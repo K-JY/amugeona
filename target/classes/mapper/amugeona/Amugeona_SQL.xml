@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="amugeona">
+	<select id="selectTypeFirstList" parameterType="hashmap" resultType="hashmap"> 
+		SELECT A.TYPE_CD
+		     , B.CODE_NAME
+		     , B.GROUP_ID
+		     , A.TYPE_CATEGORY
+		     , A.PARENT_CATEGORY 
+		  FROM TB_CATEGORYMAP A
+		     , TB_COMMONCD B 
+		 WHERE A.TYPE_CD = B.CODE_ID 
+		   AND A.PARENT_CATEGORY = 'CT001'
+	  ORDER BY A.IDX ASC
+	</select>
+	
+	<select id="selectTypeList" parameterType="hashmap" resultType="hashmap"> 
+		SELECT A.TYPE_CD
+		     , B.CODE_NAME
+		     , B.GROUP_ID
+		     , A.TYPE_CATEGORY
+		     , A.PARENT_CATEGORY 
+		  FROM TB_CATEGORYMAP A
+		     , TB_COMMONCD B 
+		 WHERE A.TYPE_CD = B.CODE_ID 
+		   AND A.PARENT_CATEGORY = #{category}
+	  ORDER BY A.IDX ASC
+	</select>
+	
+	<select id="selectFoodList" parameterType="hashmap" resultType="hashmap"> 
+		
+select B.FOOD_CD 
+	  ,C.CODE_NAME FROM (SELECT A.FOOD_CD,
+		MAX(A.STEP01) AS STEP01,
+        MAX(A.STEP02) AS STEP02,
+        MAX(A.STEP03) AS STEP03,
+        MAX(A.STEP04) AS STEP04,
+        MAX(A.STEP05) AS STEP05,
+        MAX(A.STEP06) AS STEP06,
+        MAX(A.STEP07) AS STEP07,
+        MAX(A.STEP08) AS STEP08
+        FROM (SELECT FOOD_CD,
+		CASE WHEN FOOD_STEP_TYPE = 'CM002' THEN FOOD_TYPE 
+        ELSE '' END AS STEP01,
+        CASE WHEN FOOD_STEP_TYPE = 'CM003' THEN FOOD_TYPE 
+        ELSE '' END AS STEP02,
+        CASE WHEN FOOD_STEP_TYPE = 'CM004' THEN FOOD_TYPE 
+        ELSE '' END AS STEP03,
+        CASE WHEN FOOD_STEP_TYPE = 'CM005' THEN FOOD_TYPE 
+        ELSE '' END AS STEP04,
+        CASE WHEN FOOD_STEP_TYPE = 'CM006' THEN FOOD_TYPE 
+        ELSE '' END AS STEP05,
+        CASE WHEN FOOD_STEP_TYPE = 'CM007' THEN FOOD_TYPE 
+        ELSE '' END AS STEP06,
+        CASE WHEN FOOD_STEP_TYPE = 'CM008' THEN FOOD_TYPE 
+        ELSE '' END AS STEP07,
+        CASE WHEN FOOD_STEP_TYPE = 'CM009' THEN FOOD_TYPE 
+        ELSE '' END AS STEP08
+        from tb_foodMap) A
+        GROUP BY A.FOOD_CD) B ,
+        TB_COMMONCD C
+        WHERE B.FOOD_CD = C.CODE_ID
+         <if test="CM002 != null">
+         	AND B.STEP01 = #{CM002}
+         </if>
+         <if test="CM003 != null">
+         	AND B.STEP02 = #{CM003}
+         </if>
+         <if test="CM004 != null">
+         	AND B.STEP03 = #{CM004}
+         </if>
+         <if test="CM005 != null">
+         	AND B.STEP04 = #{CM005}
+         </if>
+         <if test="CM006 != null">
+         	AND B.STEP05 = #{CM006}
+         </if>
+         <if test="CM007 != null">
+         	AND B.STEP06 = #{CM007}
+         </if>
+         <if test="CM008 != null">
+         	AND B.STEP07 = #{CM008}
+         </if>
+         <if test="CM009 != null">
+         	AND B.STEP08 = #{CM009}
+         </if>
+		  
+	GROUP BY C.CODE_NAME
+	</select>
+
+</mapper>
+
