@@ -15,7 +15,7 @@
 				<a href="/amu/typeSelect.do" class="button style2 scrolly">메뉴보러가기</a>
 			</footer>
 		</section>
-		<jsp:include page="/WEB-INF/jsp/common/head.jsp"/>
+		<jsp:include page="/WEB-INF/jsp/common/footer.jsp"/>
 
 	</body>
 </html>

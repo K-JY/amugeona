@@ -117,6 +117,7 @@ var common = {
 	}
 }
 
-$(document).ready(function(){
+init.ready = function(){
 	amugeona.btnEvent();
-})
+};
+	

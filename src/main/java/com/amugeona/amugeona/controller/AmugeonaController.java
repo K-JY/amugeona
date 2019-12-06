@@ -71,6 +71,15 @@ public class AmugeonaController {
 
 		return mv;
 	}
+	
+	@RequestMapping(value = "/amu/amugeanaWorldCup.do")
+	public ModelAndView worldCup(HttpServletRequest request) throws Exception {
+		logger.info("==== worldCup =====");
+		ModelAndView mv = new ModelAndView("/amugeona/amugeanaWorldCup");
+		
+		
+		return mv;
+	}
 
 	@RequestMapping(value = "/amu/ajaxTypeList.do", method = RequestMethod.POST)
 	@ResponseBody

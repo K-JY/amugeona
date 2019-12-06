@@ -15,11 +15,11 @@
 			<p id="typeTitle"></p>
 			<section id="type-contents">
 				<c:forEach var="list" items="${list}" varStatus="status">
-					<a href="/amu/typeSelect.do" class="button style2 scrolly">${list.CODE_NAME}</a>
+					<a href="/amu/typeSelect.do" class="button style2 scrolly mt20">${list.CODE_NAME}</a>
 				</c:forEach>
 			</section>
 			<section id="btn-list">
-				<label class="button scrolly" id="nextBtn" name="typeBtn">아무거나 월드컵</label>
+				<a href="/amu/amugeanaWorldCup.do" class="button scrolly mt20" id="nextBtn" name="typeBtn">아무거나 월드컵</a>
 			</section>
 		</section>
 			

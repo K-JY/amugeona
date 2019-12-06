@@ -7,3 +7,5 @@
 <link rel="stylesheet" href="/css/main.css?201912021604" />
 <noscript><link rel="stylesheet" href="/css/noscript.css?201912021504" /></noscript>
 <script type="text/javascript" src="/js/lib/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/js/lib/snowfall.jquery.js"></script>
+<script type="text/javascript" src="/js/init.js"></script>

@@ -2537,9 +2537,25 @@ br.clear {
     margin: 0px;
     width:45%
 }
-
+.foodBtn{
+	width: 44%;
+    margin: 0px 10px 10px 10px;
+    height: 300px;
+    padding-top: 40px;
+    font-size: 20px;
+}
 .bannerImg{
 	width: 100%;
     min-width: 200px;
     max-width: 350px;
+}
+.foodImg{
+	width:130px;
+	margin-top:20px;
+}
+.mt20{
+	margin-top:20px;
+}
+.mb20{
+	margin-bottom:20px;
 }
