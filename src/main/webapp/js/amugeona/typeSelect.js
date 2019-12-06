@@ -37,7 +37,7 @@ var amugeona = {
 				return;
 			} 
 
-			common.ajax('/amugeona/ajaxTypeList.do',paramData,amugeona.typeSuccessFn, amugeona.typeErrorFn);
+			common.ajax('/amu/ajaxTypeList.do',paramData,amugeona.typeSuccessFn, amugeona.typeErrorFn);
 		})
 	},
 	typeSuccessFn : function(data){ // type 데이터 전송 완료 후 새로운 type 데이터 받음

@@ -2483,9 +2483,6 @@ br.clear {
 				opacity: 0.5;
 			}
 			
-#content1{
-	margin-top: 300px;
-}
 	
 #lnb{
 	padding: 3em 2em 3em 2em;
@@ -2539,4 +2536,10 @@ br.clear {
     float: right;
     margin: 0px;
     width:45%
+}
+
+.bannerImg{
+	width: 100%;
+    min-width: 200px;
+    max-width: 350px;
 }

@@ -30,7 +30,7 @@ public class AmugeonaController {
 	private AmugeonaService amugeonaService;
 
 	private static final Logger logger = LoggerFactory.getLogger(AbstractDAO.class);
-	@RequestMapping(value = "/amugeona/typeSelect.do")
+	@RequestMapping(value = "/amu/typeSelect.do")
 	public ModelAndView openSampleBoardList(Map<String, Object> commandMap) throws Exception {
 		logger.info("==== type selecte =====");
 		ModelAndView mv = new ModelAndView("/amugeona/typeSelect");
@@ -41,22 +41,23 @@ public class AmugeonaController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/amugeona/main.do")
-	public ModelAndView main(Map<String, Object> commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("/amugeona/index");
-		System.out.println("/amugeona/main.do");
-		List<Map<String, Object>> list = amugeonaService.selectTypeFirstList(commandMap);
-		mv.addObject("list", list);
-
-		return mv;
-	}
 	
-	@RequestMapping(value = "/amugeona/foodSelect.do")
+	
+	@RequestMapping(value = "/amu/foodSelect.do")
 	public ModelAndView foodSelect(HttpServletRequest request) throws Exception {
+		logger.info("==== main =====");
 		ModelAndView mv = new ModelAndView("/amugeona/foodSelect");
-		String typeData = request.getParameter("typeData");
-		String stepData = request.getParameter("stepData");
 		
+		String typeData = request.getParameter("typeData"); // type 코드들
+		String stepData = request.getParameter("stepData"); // step 코드들
+		
+		logger.info("==== typeData : "+typeData);
+		logger.info("==== stepData : "+stepData);
+		
+		if(Util.isBlank(typeData) || Util.isBlank(stepData)) {
+			mv = new ModelAndView("redirect:/amugeona/main.do");
+			return mv;
+		}
 		String[] typeDataList = typeData.split("\\|");
 		String[] stepDataList = stepData.split("\\|");
 		
@@ -71,7 +72,7 @@ public class AmugeonaController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/amugeona/ajaxTypeList.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/amu/ajaxTypeList.do", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> testJson( @RequestBody Map<Object, Object> paramMap, ModelMap model) throws Exception {
 		System.out.println("/amugeona/ajaxTypeList.do");
