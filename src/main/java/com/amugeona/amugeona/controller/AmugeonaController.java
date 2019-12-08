@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.amugeona.amugeona.common.Util;
-import com.amugeona.amugeona.common.dao.AbstractDAO;
 import com.amugeona.amugeona.service.AmugeonaService;
 
 import org.slf4j.Logger;
@@ -29,7 +28,7 @@ public class AmugeonaController {
 	@Resource(name = "amugeonaService")
 	private AmugeonaService amugeonaService;
 
-	private static final Logger logger = LoggerFactory.getLogger(AbstractDAO.class);
+	private static final Logger logger = LoggerFactory.getLogger(AmugeonaController.class);
 	@RequestMapping(value = "/amu/typeSelect.do")
 	public ModelAndView openSampleBoardList(Map<String, Object> commandMap) throws Exception {
 		logger.info("==== type selecte =====");

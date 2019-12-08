@@ -94,29 +94,6 @@ var html = {
 	}
 }
 
-var common = {
-	ajax : function(url, data, successFn, errorFn){
-		$.ajax({
-			method : 'POST',
-			url : url,
-			dataType: 'json',
-		    contentType:'application/json',
-			data : JSON.stringify(data),
-			error : function(){
-				if(errorFn){
-					errorFn(data);
-				}
-			},
-			success : function(data){
-				if(successFn){
-					successFn(data);
-				}
-			}
-			
-		})
-	}
-}
-
 init.ready = function(){
 	amugeona.btnEvent();
 };

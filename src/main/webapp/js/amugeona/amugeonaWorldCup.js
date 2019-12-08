@@ -1,12 +1,23 @@
 var worldCup = {
 	food : new Array(),
 	nextFoodList : new Array(),
+	event: function(){
+		$(document).on('click','#firstBtn',function(){
+			location.href='/';
+		});
+		
+		$(document).on('click','label[name="foodBtn"]',function(){
+			var idx = $(this).attr('for').replace('foodValue','');
+			worldCup.click(idx);
+		});
+	},
 	init : function(){ // 최초 초기화
+		worldCup.event();
 		var foodList = $("input[name=foodData]");
 		for(var i = 0;i<foodList.length;i++){
-			var foodCode = foodList.val().split('|')[0];
-			var foodName = foodList.val().split('|')[1];
-			var foodImg = foodList.val().split('|')[2];
+			var foodCode = foodList.eq(i).val().split('|')[0];
+			var foodName = foodList.eq(i).val().split('|')[1];
+			var foodImg = foodList.eq(i).val().split('|')[2];
 			worldCup.food.push({
 				foodCode : foodCode,
 				foodName : foodName,
@@ -17,21 +28,24 @@ var worldCup = {
 		}
 		
 		if(worldCup.check() == 1 || worldCup.check() == 0){
-			completeFood();
+			worldCup.completeFood();
 		}
 		
-		foodRender(worldCup.random(), worldCup.random)
+		worldCup.foodRender(worldCup.random(), worldCup.random());
+		worldCup.lvView();
 	},
 	foodRender : function(idx1, idx2){
 		if(idx1 == -1 || idx2 == -1){
-			completeFood();
+			worldCup.completeFood();
 		}
 		var html = '';
-		html += html.food(worldCup[idx1].food.foodCode, worldCup[idx1].food.foodName, worldCup[idx1].food.foodImg, idx1);
-		html += html.food(worldCup[idx2].food.foodCode, worldCup[idx2].food.foodName, worldCup[idx2].food.foodImg, idx2);
+		html += htmlTemplete.food(worldCup.food[idx1].foodCode, worldCup.food[idx1].foodName, worldCup.food[idx1].foodImg, idx1);
+		html += htmlTemplete.food(worldCup.food[idx2].foodCode, worldCup.food[idx2].foodName, worldCup.food[idx2].foodImg, idx2);
 		
-		$("#type-contents").empty();
-		$("#type-contents").append(html);
+		$('#type-contents').empty();
+		$('#type-contents').append(html);
+		
+		worldCup.lvView();
 	},
 	random : function(){
 		for(var i = 0;i<worldCup.food.length;i++){
@@ -52,7 +66,9 @@ var worldCup = {
 		return cnt;
 	},
 	completeFood : function(){
-		
+		var completeFood = worldCup.food[0];
+		var html = htmlTemplete.complete(completeFood.foodName, completeFood.foodImg);
+		$("#footer").after(html);
 	},
 	click : function(idx){
 		worldCup.nextFoodList.push({
@@ -88,26 +104,53 @@ var worldCup = {
 			worldCup.changeArray();
 		}
 		
-		foodRender(worldCup.random(), worldCup.random())
+		worldCup.foodRender(worldCup.random(), worldCup.random())
 	},
 	changeArray : function(){
 		worldCup.food = worldCup.nextFoodList;
 		worldCup.nextFoodList = new Array();
+	},
+	lvView : function(){
+		var result = worldCup.food.length;
+
+		if(result == 2){
+			$("#typeTitle").html('메뉴 월드컵 결승');
+		}else{
+			$("#typeTitle").html('메뉴 월드컵 '+result+'강');
+		}
+		
 	}
 }
 
-var html = {
+var htmlTemplete = {
 	food : function(foodCd, foodName, foodImg, idx){
 		var html = '';
-		html += '<label class="button style2 scrolly foodBtn" name="foodBtn" for="foodValue2">';
-		html += '<input type="hidden" id="foodValue2" value="'+foodCd+'"/>';
-		html += foodName+'<br/><img src="'+foodImg+'" class="foodImg">';
+		html += '<label class="button style2 scrolly foodBtn" name="foodBtn" for="foodValue'+idx+'">';
+		html += '<input type="hidden" id="foodValue'+idx+'" value="'+foodCd+'"/>';
+		html += foodName+'<br/><img src="'+foodImg+'" class="foodImg2">';
 		html += '</label>';
 
+		return html;
+	},
+	complete : function(foodName, foodImg){
+		var html = '';
+		html += '<div class="dim-layer" style="display: block;">';
+		html += '<div class="dimBg"></div>';
+		html += '<div id="layer2" class="pop-layer">';
+		html += '<div class="pop-container">';
+		html += '<div class="pop-conts">';
+		html += '<img src="/images/common/1st.png" class="medalImg">';
+		html += foodName+'<br/><img src="'+foodImg+'" class="foodImg1">';
+		html += '</div>';
+		html += '</div>';
+		html += '<label class="button scrolly style2 on firstBtn" id="firstBtn" name="typeBtn">처음으로 ></label>';
+		html += '</div>';
+		html += '</div>';
+		
 		return html;
 	}
 }
 
 init.ready = function(){
-	
+	worldCup.init();
 }

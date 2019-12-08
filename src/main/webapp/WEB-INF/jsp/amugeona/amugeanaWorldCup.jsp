@@ -14,24 +14,20 @@
 		</c:forEach>
 		<section id="middle">
 			<form id="frm" action="">
-				<input type="hidden" name="data" id="data" />
+				<input type="hidden" name="foodData" id="foodData1" value="FD004|치킨|/images/food/chicken.jpg" />
+				<input type="hidden" name="foodData" id="foodData2" value="FD002|햄버거|/images/food/hamburger.jpg" />
+				<input type="hidden" name="foodData" id="foodData3" value="FD020|설렁탕|/images/food/sulrangtang.jpg" />
+				<input type="hidden" name="foodData" id="foodData4" value="FD021|커리|/images/food/curry.jpg" />
+				<input type="hidden" name="foodData" id="foodData5" value="FD022|쌀국수|/images/food/riceNoodle.jpg" />
 			</form>
 			<p id="typeTitle">메뉴 월드컵</p>
 			<section id="type-contents">
-				<label class="button style2 scrolly foodBtn" name="foodBtn" for="foodValue2">
-					<input type="hidden" id="foodValue2" value=""/>
-					햄버거<br/><img src="/images/food/hamburger.jpg" class="foodImg">
-				</label>
 				
-				<label class="button style2 scrolly foodBtn" name="typeBtn" for="foodValue2">
-					<input type="hidden" id="foodValue2" value=""/>
-					치킨<br/><img src="/images/food/chicken.jpg" class="foodImg">
-				</label>
 			</section>
 			
 		</section>
 			
 		<jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
-
+		
 	</body>
 </html>

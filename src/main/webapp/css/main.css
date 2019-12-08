@@ -1739,7 +1739,7 @@ br.clear {
 			input[type="reset"].style2.on,
 			button.style2.on,
 			.button.style2.on {
-				background: rgba(255, 255, 255, 0.1);
+				background: rgb(53, 184, 143);
 				color: #fff !important;
 				text-shadow: 0 0 0.5px rgba(255, 255, 255, 0.25) !important;
 			}
@@ -2537,9 +2537,15 @@ br.clear {
     margin: 0px;
     width:45%
 }
+.firstBtn{
+	height: 50px;
+    padding-top: 15px;
+    margin: 0px;
+    width:45%
+}
 .foodBtn{
 	width: 44%;
-    margin: 0px 10px 10px 10px;
+    margin: 0px 3% 10px 3%;
     height: 300px;
     padding-top: 40px;
     font-size: 20px;
@@ -2549,13 +2555,98 @@ br.clear {
     min-width: 200px;
     max-width: 350px;
 }
-.foodImg{
-	width:130px;
+.foodImg2{
+	width: 80%;
+	margin-top:20px;
+}
+.foodImg1{
+	width: 80%;
 	margin-top:20px;
 }
 .mt20{
 	margin-top:20px;
 }
+
 .mb20{
 	margin-bottom:20px;
+}
+
+.pop-layer .pop-container {
+  padding: 20px 25px;
+  text-align : center;
+}
+
+.pop-layer p.ctxt {
+  color: #666;
+  line-height: 25px;
+}
+
+.pop-layer {
+ 	display: none;
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 80%;
+    height: 380px;
+    background-color: #fff;
+    border: 5px solid #35b882;
+    z-index: 10;
+    border-radius: 3em;
+}
+
+.dim-layer {
+  display: none;
+  position: fixed;
+  _position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+.dim-layer .dimBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: .5;
+  filter: alpha(opacity=50);
+}
+
+.dim-layer .pop-layer {
+  display: block;
+  text-align: center;
+}
+
+a.btn-layerClose {
+  display: inline-block;
+  height: 25px;
+  padding: 0 14px 0;
+  border: 1px solid #304a8a;
+  background-color: #3f5a9d;
+  font-size: 13px;
+  color: #fff;
+  line-height: 25px;
+}
+
+a.btn-layerClose:hover {
+  border: 1px solid #091940;
+  background-color: #1f326a;
+  color: #fff;
+}
+
+.pop-conts{
+	text-align: center;
+    color: #35b882;
+    font-size: 20px;
+}
+
+.medalImg{
+	right: 1%;
+    width: 100px;
+    position: fixed;
+    top: 18%;
 }
