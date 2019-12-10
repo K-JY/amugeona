@@ -1,0 +1,65 @@
+init.ready = function(){
+	main.click();
+}
+
+var main = {
+	click : function(){
+		$(document).on("click","#size1div, #size2div",function(){
+			$("#size1div").removeClass("on");
+			$("#size2div").removeClass("on");
+			
+			$(this).addClass("on");
+			
+			if($(this).attr("id") == "size1div"){
+				$("#size2").attr("checked",false);
+				$("#size1").attr("checked",true);
+			}else{
+				$("#size2").attr("checked",true);
+				$("#size1").attr("checked",false);
+			}
+		});
+		
+		$(document).on("click","#randomMenuBtn",function(){
+			var html = htmlTemplete.randomMenu();
+			$("#footer").after(html);
+		});
+		
+		$(document).on("click","#menuBtn",function(){
+			
+		});
+		
+		$(document).on("click","#randomMenuGoBtn",function(){
+			$("#frm").submit();
+		});
+		
+		
+	}
+}
+
+var htmlTemplete  = {
+	randomMenu : function(){
+		var html = "";
+		html += '<div class="dim-layer" style="display: block;">';
+		html += '<div class="dimBg"></div>';
+		html += '<div id="layer2" class="pop-layer">';
+		html += '<div class="pop-container">';
+		html += '<div class="pop-conts">';
+		html += '랜덤메뉴고르기';
+		html += '<br/>';
+		html += '<p style="margin-top: 40px;margin-bottom: 0px;font-size: 15px;">선택할 메뉴의 갯수를 골라주세요</p>';
+		html += '<br/>';
+		html += '<form id="frm" action="/amu/randomWorldCup.do" method="POST">'
+		html += '<div class="button scrolly typeBtn redBorder on" id="size1div">8</div>';
+		html += '<input type="radio" class="hidden" name="size" id="size1" value="8" checked>';
+		html += '<div class="button scrolly typeBtn redBorder"  id="size2div">16</div>';
+		html += '<input type="radio" class="hidden" name="size" id="size2" value="16">';
+		html += '</form>'
+		html += '</div>';
+		html += '</div>';
+		html += '<label class="button scrolly style2 on firstBtn" id="randomMenuGoBtn" name="typeBtn" style="font-size: 15px;">랜덤메뉴고르기</label>';
+		html += '</div>';
+		html += '</div>';
+		
+		return html;
+	}
+}

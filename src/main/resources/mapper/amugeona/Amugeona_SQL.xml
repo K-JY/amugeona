@@ -101,5 +101,15 @@ select B.FOOD_CD
 		 	#{item}
 		 </foreach>
 	</select>
+	
+	<select id="selectRandomWorldCup" resultType="hashmap"> 
+		SELECT CODE_ID,
+			   CODE_NAME,
+			   IMG
+		  FROM TB_FOODINFO
+		 WHERE CODE_ID IN( SELECT MAX(CODE_ID)
+		  FROM TB_FOODINFO
+		 GROUP BY CODE_NAME) 
+	</select>
 </mapper>
 

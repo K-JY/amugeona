@@ -27,7 +27,7 @@
 				
 			</section>
 			<section id="btn-list">
-				<label class="button scrolly" id="nextBtn" name="typeBtn">다음 ></label>
+				<label class="button scrolly rigntBtn" id="nextBtn" name="typeBtn">다음 ></label>
 			</section>
 		</section>
 		<jsp:include page="/WEB-INF/jsp/common/footer.jsp" />

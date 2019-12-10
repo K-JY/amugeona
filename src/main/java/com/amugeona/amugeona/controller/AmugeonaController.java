@@ -2,8 +2,11 @@ package com.amugeona.amugeona.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -87,6 +90,37 @@ public class AmugeonaController {
 		
 		List<Map<String,Object>> result = amugeonaService.selectFoodWorldCup(paramMap);
 		mv.addObject("list", result);
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "/amu/randomWorldCup.do")
+	public ModelAndView randomWorldCup(HttpServletRequest request) throws Exception {
+		logger.info("==== worldCup =====");
+		ModelAndView mv = new ModelAndView("/amugeona/worldCup");
+		
+		String size = request.getParameter("size");
+		int allSize = 0;
+		List<Map<String,Object>> ResultList = new ArrayList<Map<String, Object>>();
+		Set<Integer> number = new HashSet<Integer>();
+		
+		List<Map<String,Object>> list = amugeonaService.selectRandomWorldCup();
+		allSize = list.size();
+		
+		while(true) {
+			if(number.size() == Integer.parseInt(size) ) {
+				break;
+			}
+			
+			number.add((int)(Math.random()*allSize)+1);
+		}
+		
+		Iterator<Integer> iNumber = number.iterator();
+        while(iNumber.hasNext()){
+        	ResultList.add(list.get(iNumber.next()));
+        }
+
+		mv.addObject("list", ResultList);
 		
 		return mv;
 	}

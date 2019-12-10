@@ -25,6 +25,7 @@ section, summary, time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;}
 
+
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;}
@@ -144,7 +145,7 @@ a {
 	-webkit-transition: border-color 0.35s ease-in-out, color 0.35s ease-in-out;
 	-ms-transition: border-color 0.35s ease-in-out, color 0.35s ease-in-out;
 	transition: border-color 0.35s ease-in-out, color 0.35s ease-in-out;
-	color: #35b88f;
+	color: #ef777c;
 	text-shadow: 0 0 0.5px rgba(53, 184, 143, 0.25);
 	text-decoration: none;
 	border-bottom: dotted 1px rgba(53, 184, 143, 0.5);
@@ -1738,8 +1739,9 @@ br.clear {
 			input[type="submit"].style2.on,
 			input[type="reset"].style2.on,
 			button.style2.on,
-			.button.style2.on {
-				background: rgb(53, 184, 143);
+			.button.style2.on ,
+			.redBorder.on{
+				background: rgb(255, 31, 40);
 				color: #fff !important;
 				text-shadow: 0 0 0.5px rgba(255, 255, 255, 0.25) !important;
 			}
@@ -2046,14 +2048,14 @@ br.clear {
 		color: #fff;
 		text-shadow: 0 0 0.5px rgba(255, 255, 255, 0.25);
 		text-align: center;
-		background: #35b88f bottom center no-repeat;
+		background: #ef777c bottom center no-repeat;
 		padding: 5em 0 5em 0;
 		margin: 0;
 		background-size: 125% auto;
 	}
 
 		#middle .button {
-			color: #35b882;
+			color: #f93038;
 			text-shadow: 0 0 0.5px rgba(53, 184, 130, 0.25);
 		}
 
@@ -2106,7 +2108,7 @@ br.clear {
 		}
 
 			#footer a:hover {
-				color: #35b88f;
+				color: #ef777c;
 				text-shadow: 0 0 0.5px rgba(69, 200, 159, 0.25);
 				border-bottom-color: rgba(53, 184, 143, 0.5);
 			}
@@ -2488,7 +2490,7 @@ br.clear {
 	padding: 3em 2em 3em 2em;
     height: 10px;
     text-align: center;
-    background: #35b88f;
+    background: #ef777c;
     color: white;
     margin-bottom: 0em;
 }
@@ -2522,21 +2524,30 @@ br.clear {
     height: 100px;
     padding-top: 40px;
     font-size: 20px;
-    background: #35b88f;
-    box-shadow: inset 0 0 0 1px #35b88f;
+    background: #ef777c;
+    box-shadow: inset 0 0 0 1px #ef777c;
 }
 
 #btn-list{
 	margin-top: 40px;
 }
 
-#nextBtn{
+.rightBtn{
 	height: 50px;
     padding-top: 15px;
     float: right;
     margin: 0px;
     width:45%
 }
+
+.leftBtn{
+	height: 50px;
+    padding-top: 15px;
+    float: left;
+    margin: 0px;
+    width:45%
+}
+
 .firstBtn{
 	height: 50px;
     padding-top: 15px;
@@ -2548,7 +2559,7 @@ br.clear {
     margin: 0px 3% 10px 3%;
     height: 300px;
     padding-top: 40px;
-    font-size: 20px;
+    font-size: 15px;
 }
 .bannerImg{
 	width: 100%;
@@ -2589,7 +2600,7 @@ br.clear {
     width: 80%;
     height: 380px;
     background-color: #fff;
-    border: 5px solid #35b882;
+    border: 5px solid #f93038;
     z-index: 10;
     border-radius: 3em;
 }
@@ -2640,7 +2651,7 @@ a.btn-layerClose:hover {
 
 .pop-conts{
 	text-align: center;
-    color: #35b882;
+    color: #f93038;
     font-size: 20px;
 }
 
@@ -2649,4 +2660,9 @@ a.btn-layerClose:hover {
     width: 100px;
     position: fixed;
     top: 18%;
+}
+
+.redBorder{
+	border: 2px solid #f93038;
+    color: #f93038;
 }
