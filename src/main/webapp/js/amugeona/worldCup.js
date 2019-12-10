@@ -10,6 +10,10 @@ var worldCup = {
 			var idx = $(this).attr('for').replace('foodValue','');
 			worldCup.click(idx);
 		});
+		
+		$(document).on('error','img',function(){
+			
+		});
 	},
 	init : function(){ // 최초 초기화
 		worldCup.event();
@@ -127,7 +131,7 @@ var htmlTemplete = {
 		var html = '';
 		html += '<label class="button style2 scrolly foodBtn" name="foodBtn" for="foodValue'+idx+'">';
 		html += '<input type="hidden" id="foodValue'+idx+'" value="'+foodCd+'"/>';
-		html += foodName+'<br/><img src="'+foodImg+'" class="foodImg2">';
+		html += foodName+'<br/><img src="'+foodImg+'"onerror="this.src=\'/images/common/no_image.jpg\'"  class="foodImg2">';
 		html += '</label>';
 
 		return html;
@@ -140,7 +144,7 @@ var htmlTemplete = {
 		html += '<div class="pop-container">';
 		html += '<div class="pop-conts">';
 		html += '<img src="/images/common/1st.png" class="medalImg">';
-		html += foodName+'<br/><img src="'+foodImg+'" class="foodImg1">';
+		html += foodName+'<br/><img src="'+foodImg+'" onerror="this.src=\'/images/common/no_image.jpg\'" class="foodImg1">';
 		html += '</div>';
 		html += '</div>';
 		html += '<label class="button scrolly style2 on firstBtn" id="firstBtn" name="typeBtn">처음으로 ></label>';

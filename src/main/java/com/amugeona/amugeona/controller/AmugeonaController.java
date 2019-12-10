@@ -1,5 +1,6 @@
 package com.amugeona.amugeona.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,11 +72,21 @@ public class AmugeonaController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/amu/amugeanaWorldCup.do")
+	@RequestMapping(value = "/amu/worldCup.do")
 	public ModelAndView worldCup(HttpServletRequest request) throws Exception {
 		logger.info("==== worldCup =====");
-		ModelAndView mv = new ModelAndView("/amugeona/amugeanaWorldCup");
+		ModelAndView mv = new ModelAndView("/amugeona/worldCup");
+		String[] value = request.getParameter("data").split("\\|");
+		Map<String,Object> paramMap = new HashMap<String,Object>();
+		List<String> list = new ArrayList<String>();
+		for(int i = 0;i<value.length;i++) {
+			list.add(value[i]);
+		}
 		
+		paramMap.put("list", list);
+		
+		List<Map<String,Object>> result = amugeonaService.selectFoodWorldCup(paramMap);
+		mv.addObject("list", result);
 		
 		return mv;
 	}

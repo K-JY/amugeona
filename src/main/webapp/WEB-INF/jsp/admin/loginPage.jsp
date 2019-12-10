@@ -30,7 +30,7 @@
 </script>
 <body>
 id : <input type="text" id="id" name="id" value=""/>
-pw : <input type="passward" id="pw" name="pw" value=""/>
+pw : <input type="password" id="pw" name="pw" value=""/>
 <button id="submit">login</button>
 </body>
 </html>

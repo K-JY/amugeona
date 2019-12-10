@@ -9,5 +9,123 @@
 		 WHERE ID = #{id}
 		   AND PW = #{pw}
 	</select>
+	
+	<select id="selectStepType" parameterType="hashmap" resultType="hashmap"> 
+		SELECT CODE_ID,
+			   CODE_NAME
+		  FROM TB_COMMONCD
+		 WHERE GROUP_ID = #{groupId}
+	</select>
+	
+	<select id="selectFoodType" parameterType="hashmap" resultType="hashmap"> 
+	SELECT B.CODE_NAME,
+			   A.TYPE_CD,
+			   A.TYPE_CATEGORY,
+			   A.PARENT_CATEGORY
+		  FROM TB_CATEGORYMAP A,
+		  	   TB_COMMONCD B
+		 WHERE A.TYPE_CD = B.CODE_ID
+		   AND PARENT_CATEGORY = #{foodCd}
+	</select>
+	
+	<select id="selectFoodList" parameterType="hashmap" resultType="hashmap"> 
+		SELECT A.FOOD_CD,
+	   		   B.CODE_NAME,	
+	   		   B.IMG,
+		MAX(A.STEP01) AS STEP01,
+        MAX(A.STEP02) AS STEP02,
+        MAX(A.STEP03) AS STEP03,
+        MAX(A.STEP04) AS STEP04,
+        MAX(A.STEP05) AS STEP05,
+        MAX(A.STEP06) AS STEP06,
+        MAX(A.STEP07) AS STEP07,
+        MAX(A.STEP08) AS STEP08
+        FROM (SELECT FOOD_CD,
+		CASE WHEN FOOD_STEP_TYPE = 'CM002' THEN FOOD_TYPE 
+        ELSE '' END AS STEP01,
+        CASE WHEN FOOD_STEP_TYPE = 'CM003' THEN FOOD_TYPE 
+        ELSE '' END AS STEP02,
+        CASE WHEN FOOD_STEP_TYPE = 'CM004' THEN FOOD_TYPE 
+        ELSE '' END AS STEP03,
+        CASE WHEN FOOD_STEP_TYPE = 'CM005' THEN FOOD_TYPE 
+        ELSE '' END AS STEP04,
+        CASE WHEN FOOD_STEP_TYPE = 'CM006' THEN FOOD_TYPE 
+        ELSE '' END AS STEP05,
+        CASE WHEN FOOD_STEP_TYPE = 'CM007' THEN FOOD_TYPE 
+        ELSE '' END AS STEP06,
+        CASE WHEN FOOD_STEP_TYPE = 'CM008' THEN FOOD_TYPE 
+        ELSE '' END AS STEP07,
+        CASE WHEN FOOD_STEP_TYPE = 'CM009' THEN FOOD_TYPE 
+        ELSE '' END AS STEP08
+        from TB_FOODMAP) A,
+        TB_FOODINFO B
+        WHERE A.FOOD_CD = B.CODE_ID
+        GROUP BY A.FOOD_CD
+		
+	</select>
+	
+	<insert id="insertFoodInfo" parameterType="hashmap" useGeneratedKeys="true" keyProperty="CODE_ID"> 
+		INSERT INTO TB_FOODINFO
+			(
+				CODE_ID, 
+				CODE_NAME,
+				IMG, 
+				REG_DATE, 
+				REG_ID, 
+				MOD_DATE,
+				MOD_ID
+			) VALUES 
+			( 
+				(select CASE WHEN A.IDX >= 100 THEN CONCAT('FD0',A.IDX)
+							 WHEN A.IDX >= 10 THEN CONCAT('FD00',A.IDX)
+							 ELSE CONCAT('FD000',A.IDX) 
+						END AS CODE 
+				   FROM (select MAX(IDX)+1 AS IDX from TB_FOODINFO) A), 
+				#{foodName}, 
+				#{img}, 
+				sysdate(), 
+				'SYSTEM', 
+				sysdate(), 
+				'SYSTEM'
+			)
+	</insert>
+	
+	<insert id="insertFoodMap" parameterType="hashmap"> 
+		INSERT INTO TB_FOODMAP 
+			(
+				FOOD_CD, 
+				FOOD_TYPE,
+				FOOD_STEP_TYPE, 
+				REG_DATE, 
+				REG_ID, 
+				MOD_DATE, 
+				MOD_ID
+			) VALUES
+			(
+				#{foodId},
+				#{foodType},
+				(SELECT A.GROUP_ID 
+				   FROM TB_COMMONCD A 
+				  WHERE CODE_ID = #{foodType}
+				),
+				sysdate(),
+				'SYSTEM',
+				sysdate(),
+				'SYSTEM'
+			)
+	</insert>
+	
+	<update id="updateFoodInfo" parameterType="hashmap"> 
+		UPDATE TB_FOODINFO 
+		   SET IMG = #{img}
+		 WHERE CODE_ID = #{foodCd}
+	</update>
+	
+	<update id="updateFoodMap" parameterType="hashmap"> 
+		UPDATE TB_FOODMAP
+		   SET FOOD_TYPE = #{foodType}
+		 WHERE FOOD_CD = #{foodCd}
+		   AND FOOD_STEP_TYPE = (SELECT GROUP_ID FROM TB_COMMONCD WHERE CODE_ID = #{foodType})
+	</update>
 </mapper>
 

@@ -59,7 +59,7 @@ select B.FOOD_CD
         ELSE '' END AS STEP08
         from tb_foodMap) A
         GROUP BY A.FOOD_CD) B ,
-        TB_COMMONCD C
+        TB_FOODINFO C
         WHERE B.FOOD_CD = C.CODE_ID
          <if test="CM002 != null">
          	AND B.STEP01 = #{CM002}
@@ -85,9 +85,21 @@ select B.FOOD_CD
          <if test="CM009 != null">
          	AND B.STEP08 = #{CM009}
          </if>
-		  
+		 <if test="foodName != null">
+         	AND C.CODE_NAME = #{foodName}
+         </if>
 	GROUP BY C.CODE_NAME
 	</select>
 
+	<select id="selectFoodWorldCup" parameterType="hashmap" resultType="hashmap"> 
+		SELECT CODE_ID,
+			   CODE_NAME,
+			   IMG
+		  FROM TB_FOODINFO
+		 WHERE CODE_ID IN
+		 <foreach collection="list" item="item" open="(" close=")" separator=",">
+		 	#{item}
+		 </foreach>
+	</select>
 </mapper>
 

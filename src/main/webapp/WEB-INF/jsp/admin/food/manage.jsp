@@ -12,16 +12,18 @@
 <body>
 <script>
 	init.ready = function(){
+		admin.init();
 		var stepId = '';
 		$("select").on("change",function(){
-			stepId = 'step0'+$(this).attr("id").replace("step0","");
-			common.ajax('/admin/foodSelect.do',{
-				foodCd : $(this).val()
+			stepId = 'step0'+(($(this).attr("id").replace("step0","")*1)+1);
+			common.ajax('/admin/ajaxFoodSelect.do',{
+				foodCd : $("#"+$(this).attr("id")+" option:selected").val().split("|")[1]
 			}, function(data){
 				if(data.result){
-					var html = '';
+					var html = '<option value="">선택</option>';
 					for(var i = 0;i<data.list.length;i++){
-						html += '<option value="'+data.list[i].CODE_ID+'">'+data.list[i].CODE_NAME+'</option>';
+						var value = data.list[i].TYPE_CD+'|'+data.list[i].TYPE_CATEGORY+'|'+data.list[i].PARENT_CATEGORY;
+						html += '<option value="'+value+'">'+data.list[i].CODE_NAME+'</option>';
 					}
 					$("#"+stepId).empty();
 					$("#"+stepId).append(html);
@@ -35,12 +37,14 @@
 		$("#insertBtn").on("click",function(){
 			common.ajax('/admin/foodInsert.do',{
 				foodName : $(this).val(), 
-				step01:$("#step01 option:selected").val(),
-				step02:$("#step02 option:selected").val(),
-				step03:$("#step03 option:selected").val(),
-				step04:$("#step04 option:selected").val(),
-				step05:$("#step05 option:selected").val(),
-				step06:$("#step06 option:selected").val()
+				list : [
+					{typeCd : $("#step01 option:selected").val().split("|")[0]},
+					{typeCd : $("#step02 option:selected").val().split("|")[0]},
+					{typeCd : $("#step03 option:selected").val().split("|")[0]},
+					{typeCd : $("#step04 option:selected").val().split("|")[0]},
+					{typeCd : $("#step05 option:selected").val().split("|")[0]},
+					{typeCd : $("#step06 option:selected").val().split("|")[0]}
+				]
 			},function(data){
 				if(data.result){
 					alert("성공");
@@ -54,35 +58,58 @@
 	}
 	
 	var admin = {
-		successFn : function(data){
-			
-		},
-		errorFn : function(){
-			
+		init : function(){
+			var stepId = 
+			stepId = 'step01';
+			common.ajax('/admin/ajaxFoodSelect.do',{
+				foodCd : 'CT001'
+			}, function(data){
+				if(data.result){
+					var html = '<option value="">선택</option>';
+					for(var i = 0;i<data.list.length;i++){
+						var value = data.list[i].TYPE_CD+'|'+data.list[i].TYPE_CATEGORY+'|'+data.list[i].PARENT_CATEGORY;
+						html += '<option value="'+value+'">'+data.list[i].CODE_NAME+'</option>';
+					}
+					$("#"+stepId).empty();
+					$("#"+stepId).append(html);
+				}
+				
+			}, function(data){
+				
+			});
 		}
 	}
 </script>
 <h2>음식관리</h2>
+<form action="/admin/foodInsert.do", method="post" enctype="multipart/form-data">
+    
 음식 이름 : <input type="text" id="foodName" name="foodName"/>
+<br/>
 step01 : 
-<select id="step01">
+<select id="step01" name="step01">
 </select>
+<br/>
 step02 : 
-<select id="step02">
+<select id="step02" name="step02">
 </select>
+<br/>
 step03 : 
-<select id="step03">
+<select id="step03" name="step03">
 </select>
+<br/>
 step04 : 
-<select id="step04">
+<select id="step04" name="step04">
 </select>
+<br/>
 step05 : 
-<select id="step05">
+<select id="step05" name="step05">
 </select>
+<br/>
 step06 : 
-<select id="step06">
+<select id="step06" name="step06">
 </select>
-<button id="insertBtn" value="등록"></button>
-
+<input type="file", name="uploadfile" placeholder="파일 선택" /><br/>
+<input type="submit" value="업로드">
+</form>
 </body>
 </html>

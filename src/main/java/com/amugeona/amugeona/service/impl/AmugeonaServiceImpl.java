@@ -32,4 +32,9 @@ public class AmugeonaServiceImpl implements AmugeonaService{
 		return amugeonaDAO.selectFoodList(commandMap);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectFoodWorldCup(Map<String, Object> commandMap) throws Exception {
+		return amugeonaDAO.selectFoodWorldCup(commandMap);
+	}
+
 }
