@@ -10,7 +10,7 @@
 	<div id="middle" style="height:700px;">
 		<div class="map_wrap">
 		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-			<input type="hidden" value="${foodName}" id="keyword" size="15"> 
+			<input type="hidden" value="${foodNm}" id="keyword" size="15"> 
 		    <div id="menu_wrap" class="bg_white">
 		       
 		        <div class="swiper-container" class="map-contents">

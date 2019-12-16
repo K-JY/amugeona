@@ -4,6 +4,8 @@
 <title>아무거나를 정해드립니다.</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="google-site-verification" content="GOS2DDiZC-DsIXUGqT4XjprqtHtt5fasyxx8Rez4Vf0" />
+
 <link rel="stylesheet" href="/css/main.css?201912102013" />
 <link rel="stylesheet" href="/css/map.css?201912102013" />
 <link rel="stylesheet" href="/css/swiper.min.css">

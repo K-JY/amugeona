@@ -40,10 +40,12 @@ public class AmugeonaController {
 	private static final Logger logger = LoggerFactory.getLogger(AmugeonaController.class);
 	@RequestMapping(value = "/amu/typeSelect.do")
 	public ModelAndView openSampleBoardList(Map<String, Object> commandMap) throws Exception {
-		logger.info("==== type selecte =====");
+		logger.info("==== /amu/typeSelect.do =====");
+		logger.info("==== 메뉴 고르기 화면 =====");
+		
 		ModelAndView mv = new ModelAndView("/amugeona/typeSelect");
-		System.out.println("/amugeona/typeSelect.do");
-		List<Map<String, Object>> list = amugeonaService.selectTypeFirstList(commandMap);
+		
+		List<Map<String, Object>> list = amugeonaService.selectTypeFirstList(commandMap); // 최초 메뉴 타입 조회
 		mv.addObject("list", list);
 
 		return mv;
@@ -53,7 +55,8 @@ public class AmugeonaController {
 	
 	@RequestMapping(value = "/amu/foodSelect.do")
 	public ModelAndView foodSelect(HttpServletRequest request) throws Exception {
-		logger.info("==== main =====");
+		logger.info("==== /amu/foodSelect.do =====");
+		logger.info("==== 음식 조회 화면 =====");
 		ModelAndView mv = new ModelAndView("/amugeona/foodSelect");
 		
 		String typeData = request.getParameter("typeData"); // type 코드들
@@ -63,9 +66,10 @@ public class AmugeonaController {
 		logger.info("==== stepData : "+stepData);
 		
 		if(Util.isBlank(typeData) || Util.isBlank(stepData)) {
-			mv = new ModelAndView("redirect:/amugeona/main.do");
-			return mv;
+			typeData = "";
+			stepData = "";
 		}
+		
 		String[] typeDataList = typeData.split("\\|");
 		String[] stepDataList = stepData.split("\\|");
 		
@@ -80,23 +84,15 @@ public class AmugeonaController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/amu/searchRestaurant.do")
-	public ModelAndView searchRestaurant(HttpServletRequest request) throws Exception {
-		logger.info("==== searchRestaurant =====");
-		ModelAndView mv = new ModelAndView("/amugeona/searchRestaurant");
-		
-		String foodNm = request.getParameter("foodNm"); // foodCd;
-
-		mv.addObject("foodNm", foodNm);
-
-		return mv;
-	}
-	
 	@RequestMapping(value = "/amu/worldCup.do")
 	public ModelAndView worldCup(HttpServletRequest request) throws Exception {
-		logger.info("==== worldCup =====");
+		logger.info("==== /amu/worldCup.do =====");
+		logger.info("==== 음식 월드컵 =====");
+		
 		ModelAndView mv = new ModelAndView("/amugeona/worldCup");
+		String data = request.getParameter("data");
 		String[] value = request.getParameter("data").split("\\|");
+		
 		Map<String,Object> paramMap = new HashMap<String,Object>();
 		List<String> list = new ArrayList<String>();
 		for(int i = 0;i<value.length;i++) {
@@ -113,18 +109,25 @@ public class AmugeonaController {
 	
 	@RequestMapping(value = "/amu/mapList.do")
 	public ModelAndView mapList(HttpServletRequest request) throws Exception {
-		logger.info("==== mapList =====");
+		logger.info("==== /amu/mapList.do =====");
+		logger.info("==== 카카오 맵 음식점 찾기 화면 =====");
 		ModelAndView mv = new ModelAndView("/amugeona/mapList");
-		String foodName = request.getParameter("foodName");
-
-		mv.addObject("foodName", foodName);
 		
+		String foodNm = request.getParameter("foodNm"); // foodCd;
+		
+		if(Util.isBlank(foodNm)) {
+			mv = new ModelAndView("redirect:/main.do");
+			return mv;
+		}
+		mv.addObject("foodNm", foodNm);
+
 		return mv;
 	}
 	
 	@RequestMapping(value = "/amu/randomWorldCup.do")
 	public ModelAndView randomWorldCup(HttpServletRequest request) throws Exception {
-		logger.info("==== worldCup =====");
+		logger.info("==== /amu/randomWorldCup.do =====");
+		logger.info("==== 랜던월드컵 화면 =====");
 		ModelAndView mv = new ModelAndView("/amugeona/worldCup");
 		
 		String size = request.getParameter("size");
@@ -143,7 +146,7 @@ public class AmugeonaController {
 				break;
 			}
 			
-			number.add((int)(Math.random()*allSize)+1);
+			number.add((int)(Math.random()*(allSize-1))+1);
 		}
 		
 		Iterator<Integer> iNumber = number.iterator();

@@ -14,7 +14,7 @@
 		</form>
 		
 		<form id="mapListFrm" action="/amu/mapList.do" method="POST">
-			<input type="hidden" id="foodName" name="foodName" value=""/>
+			<input type="hidden" id="foodNm" name="foodNm" value=""/>
 		</form>
 		<div id="middle">
     		<p id="typeTitle">결과</p>

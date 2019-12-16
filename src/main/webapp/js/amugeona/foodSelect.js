@@ -17,7 +17,7 @@ var food = {
 			}
 			
 			var foodValue = $(".foodListBtn.on input[name=foodNameValue]").val();
-			$("#foodName").val(foodValue);
+			$("#foodNm").val(foodValue);
 			$("#mapListFrm").submit();
 		});
 		

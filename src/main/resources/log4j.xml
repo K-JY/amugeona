@@ -31,28 +31,28 @@
 	<!-- Application Loggers -->
 	<logger name="com.first.amugeona">
 		<level value="info" />
-		<level value="debug" />
+
 	</logger>
 
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />
-		<level value="debug" />
+
 	</logger>
 
 	<logger name="org.springframework.beans">
 		<level value="info" />
-		<level value="debug" />
+
 	</logger>
 
 	<logger name="org.springframework.context">
 		<level value="info" />
-		<level value="debug" />
+
 	</logger>
 
 	<logger name="org.springframework.web">
 		<level value="info" />
-		<level value="debug" />
+
 	</logger>
 	<logger name="jdbc.resultsettable">
 		<level value="debug" />

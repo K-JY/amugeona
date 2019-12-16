@@ -38,25 +38,4 @@ public class MainController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/head.do")
-	public ModelAndView head(Map<String, Object> commandMap) throws Exception {
-		logger.info("==== main =====");
-		ModelAndView mv = new ModelAndView("common/head");
-		return mv;
-	}
-	
-	@RequestMapping(value = "/header.do")
-	public ModelAndView header(Map<String, Object> commandMap) throws Exception {
-		logger.info("==== header =====");
-		ModelAndView mv = new ModelAndView("common/header");
-		return mv;
-	}
-	
-	@RequestMapping(value = "/footer.do")
-	public ModelAndView footer(Map<String, Object> commandMap) throws Exception {
-		logger.info("==== footer =====");
-		ModelAndView mv = new ModelAndView("common/footer");
-		return mv;
-	}
-	
 }

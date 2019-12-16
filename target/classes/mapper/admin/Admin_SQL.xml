@@ -119,8 +119,10 @@
 	
 	<update id="updateFoodInfo" parameterType="hashmap"> 
 		UPDATE TB_FOODINFO 
-		   SET IMG = #{img},
-		       CODE_NAME = #{foodNm}
+		   SET CODE_NAME = #{foodNm}
+		  	   <if test="img != null">
+		   	   	,IMG = #{img}
+		   	   </if>
 		 WHERE CODE_ID = #{foodCd}
 	</update>
 	

@@ -1,4 +1,5 @@
 var amugeona = {
+	nullList: ['TY026','TY027','TY028','TY029','TY030','TY031','TY032'],
 	typeList: new Array(),
 	btnEvent: function(){
 		$(document).on('click','label[name=typeBtn]',function(e){
@@ -25,9 +26,12 @@ var amugeona = {
 				var categoryData = '';
 				var stepData = '';
 				for(var i = 0;i<amugeona.typeList.length;i++){
-					typeData += amugeona.typeList[i].typeCd+'|';
-					categoryData += amugeona.typeList[i].category+'|';
-					stepData += amugeona.typeList[i].step+'|';
+					if(amugeona.nullList.indexOf(amugeona.typeList[i].typeCd) == -1){
+						typeData += amugeona.typeList[i].typeCd+'|';
+						categoryData += amugeona.typeList[i].category+'|';
+						stepData += amugeona.typeList[i].step+'|';
+					}
+					
 				}
 				$("#typeData").val(typeData);
 				$("#categoryData").val(categoryData);
