@@ -1,5 +1,9 @@
 var init = {
 	before : function(){
+		if (document.location.protocol == 'http:') {
+	        document.location.href = document.location.href.replace('http:', 'https:');
+	    }
+		
 		$(document).snowfall({
 			minSize : 5,
 			maxSize : 10,

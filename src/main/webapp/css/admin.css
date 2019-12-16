@@ -1,0 +1,11 @@
+.foodTable td, .foodTable th {
+	border: 1px solid #444444;
+}
+
+.foodTable tr:nth-child(even) {
+   background-color: #ffd4e9;
+}
+
+.foodTable tr:nth-child(odd) {
+    background-color: #d4e9ff; 
+}

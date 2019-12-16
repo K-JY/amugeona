@@ -11,11 +11,9 @@ var main = {
 			$(this).addClass("on");
 			
 			if($(this).attr("id") == "size1div"){
-				$("#size2").attr("checked",false);
-				$("#size1").attr("checked",true);
+				$("#size1").prop("checked",true);
 			}else{
-				$("#size2").attr("checked",true);
-				$("#size1").attr("checked",false);
+				$("#size2").prop("checked",true);
 			}
 		});
 		
@@ -25,7 +23,7 @@ var main = {
 		});
 		
 		$(document).on("click","#menuBtn",function(){
-			
+			location.href="/amu/typeSelect.do";
 		});
 		
 		$(document).on("click","#randomMenuGoBtn",function(){

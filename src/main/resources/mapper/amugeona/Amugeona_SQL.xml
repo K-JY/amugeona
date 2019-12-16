@@ -31,7 +31,8 @@
 	<select id="selectFoodList" parameterType="hashmap" resultType="hashmap"> 
 		
 select B.FOOD_CD 
-	  ,C.CODE_NAME FROM (SELECT A.FOOD_CD,
+	  ,C.CODE_NAME
+	  ,C.IMG FROM (SELECT A.FOOD_CD,
 		MAX(A.STEP01) AS STEP01,
         MAX(A.STEP02) AS STEP02,
         MAX(A.STEP03) AS STEP03,
@@ -61,6 +62,7 @@ select B.FOOD_CD
         GROUP BY A.FOOD_CD) B ,
         TB_FOODINFO C
         WHERE B.FOOD_CD = C.CODE_ID
+          AND DEL_YN = 'Y' 
          <if test="CM002 != null">
          	AND B.STEP01 = #{CM002}
          </if>
@@ -96,7 +98,8 @@ select B.FOOD_CD
 			   CODE_NAME,
 			   IMG
 		  FROM TB_FOODINFO
-		 WHERE CODE_ID IN
+		 WHERE DEL_YN = 'Y'
+		   AND CODE_ID IN
 		 <foreach collection="list" item="item" open="(" close=")" separator=",">
 		 	#{item}
 		 </foreach>
@@ -110,6 +113,7 @@ select B.FOOD_CD
 		 WHERE CODE_ID IN( SELECT MAX(CODE_ID)
 		  FROM TB_FOODINFO
 		 GROUP BY CODE_NAME) 
+		   AND DEL_YN = 'Y'
 	</select>
 </mapper>
 

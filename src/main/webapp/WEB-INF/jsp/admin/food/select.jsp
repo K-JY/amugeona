@@ -8,6 +8,7 @@
 <script type="text/javascript" src="/js/lib/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="/js/lib/snowfall.jquery.js"></script>
 <script type="text/javascript" src="/js/init.js"></script>
+<link rel="stylesheet" href="/css/admin.css?201912102013" />
 </head>
 <body>
 <h2>음식 정보 조회 수정</h2>
@@ -22,6 +23,7 @@
 				var idx = $(this).attr("id").replace("updateBtn","");
 				var formData = new FormData();
 				formData.append('file',$("#file"+idx)[0].files[0]);
+				formData.append('foodNm',$("#foodNm"+idx).val());
 				formData.append('foodCd',$("#foodCd"+idx).val());
 				formData.append('step01',$("#step01"+idx+" option:selected").val());
 				formData.append('step02',$("#step02"+idx+" option:selected").val());
@@ -40,11 +42,27 @@
 				});
 			});
 			
+			$(document).on("click","button[name='deleteBtn']",function(){
+				var idx = $(this).attr("id").replace("deleteBtn","");
+				var formData = new FormData();
+
+				formData.append('foodCd',$("#foodCd"+idx).val());
+				
+				
+				common.ajaxFile('/admin/foodDelete.do',formData,function(data){
+					if(data.result){
+						location.href="/admin/foodSelect.do";
+					}
+				},function(){
+					
+				});
+			});
+			
 		}
 	}
 </script>
 
-<table>
+<table class="foodTable">
 	<tr>
 		<th>음식이름</th>
 		<th>step01</th>
@@ -62,10 +80,10 @@
 		<tr>
 			<td>
 				<c:set var="index" value="${status.index}"/>
-				${list.CODE_NAME}
+				<input type="text" value="${list.CODE_NAME}" id="foodNm${index}"/>
 				<input type="hidden" value="${list.FOOD_CD}" id="foodCd${index}"/>
 			</td>
-			<td>
+			<td >
 				<select id="step01${index}">
 					<option></option>
 					<c:forEach var="step01" items="${step01}" varStatus="status">
@@ -73,7 +91,7 @@
 					</c:forEach>
 				</select>
 			</td>
-			<td>
+			<td >
 				<select id="step02${index}">
 					<option></option>
 					<c:forEach var="step02" items="${step02}" varStatus="status">
@@ -81,7 +99,7 @@
 					</c:forEach>
 				</select>
 			</td>
-			<td>
+			<td >
 				<select id="step03${index}">
 					<option></option>
 					<c:forEach var="step03" items="${step03}" varStatus="status">
@@ -113,7 +131,7 @@
 					</c:forEach>
 				</select>
 			</td>
-			<td>
+			<td >
 				<select id="step07${index}">
 					<option></option>
 					<c:forEach var="step07" items="${step07}" varStatus="status">
@@ -121,14 +139,15 @@
 					</c:forEach>
 				</select>
 			</td>
-			<td>
+			<td >
 				${list.IMG}
 			</td>
-			<td>
+			<td >
 				<input type="file" id="file${index}" name="file" value="">
 			</td>
-			<td>
+			<td >
 				<button name="updateBtn" id="updateBtn${index}">수정</button>
+				<button name="deleteBtn" id="deleteBtn${index}">삭제</button>
 			</td>
 		</tr>
 	</c:forEach>

@@ -26,10 +26,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.amugeona.amugeona.admin.service.AdminService;
-import com.amugeona.amugeona.common.UserSha256;
-import com.amugeona.amugeona.common.Util;
-import com.amugeona.amugeona.common.dao.AbstractDAO;
-import com.amugeona.amugeona.service.AmugeonaService;
+import com.amugeona.amugeona.menupick.common.UserSha256;
+import com.amugeona.amugeona.menupick.common.Util;
+import com.amugeona.amugeona.menupick.common.dao.AbstractDAO;
+import com.amugeona.amugeona.menupick.service.AmugeonaService;
 
 @Controller
 public class AdminController {
@@ -171,18 +171,24 @@ public class AdminController {
 		Map<String, Object> resultMap = new HashMap<String,Object>();
 		Iterator<String> files = request.getFileNames();
 		String foodCd = (String)request.getParameter("foodCd");
+		String foodNm = (String)request.getParameter("foodNm");
+		
+		Map<String, Object> foodInfoMap = new HashMap<String, Object>();
+		
 		if(files.hasNext()) {
 			MultipartFile multipartFile = request.getFile(files.next());
 			String result = saveFile(multipartFile);
 			
 		    String img = "/images/food/"+result;
 		    
-		    Map<String, Object> foodInfoMap = new HashMap<String, Object>();
-		    foodInfoMap.put("foodCd", foodCd);
 		    foodInfoMap.put("img", img);
 		    
-		    adminService.updateFoodInfo(foodInfoMap);
+		    
 		}
+		foodInfoMap.put("foodCd", foodCd);
+		foodInfoMap.put("foodNm", foodNm);
+		
+		adminService.updateFoodInfo(foodInfoMap);
 		
 
 	    for(int i = 1;i<7;i++) {
@@ -196,6 +202,26 @@ public class AdminController {
 	    	 
 	    }
 	    
+	    resultMap.put("result", true);
+		return resultMap; // 화면으로 던져준다!!
+		 
+	}
+	
+	@RequestMapping(value = "/admin/foodDelete.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> foodDelete(HttpServletRequest request) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String,Object>();
+
+		String foodCd = (String)request.getParameter("foodCd");
+
+		
+		Map<String, Object> foodInfoMap = new HashMap<String, Object>();
+
+		foodInfoMap.put("foodCd", foodCd);
+
+		
+		adminService.deleteFoodInfo(foodInfoMap);
+		
 	    resultMap.put("result", true);
 		return resultMap; // 화면으로 던져준다!!
 		 

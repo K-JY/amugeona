@@ -14,7 +14,7 @@
 		</c:forEach>
 		<section id="middle">
 			<p id="typeTitle">메뉴 월드컵</p>
-			<section id="type-contents">
+			<section id="type-contents" style="height:400px; overflow:hidden">
 			</section>
 			
 		</section>

@@ -57,9 +57,11 @@
         ELSE '' END AS STEP07,
         CASE WHEN FOOD_STEP_TYPE = 'CM009' THEN FOOD_TYPE 
         ELSE '' END AS STEP08
-        from TB_FOODMAP) A,
+        from TB_FOODMAP
+        ) A,
         TB_FOODINFO B
         WHERE A.FOOD_CD = B.CODE_ID
+          AND B.DEL_YN = 'Y' 
         GROUP BY A.FOOD_CD
 		
 	</select>
@@ -117,7 +119,8 @@
 	
 	<update id="updateFoodInfo" parameterType="hashmap"> 
 		UPDATE TB_FOODINFO 
-		   SET IMG = #{img}
+		   SET IMG = #{img},
+		       CODE_NAME = #{foodNm}
 		 WHERE CODE_ID = #{foodCd}
 	</update>
 	
@@ -126,6 +129,12 @@
 		   SET FOOD_TYPE = #{foodType}
 		 WHERE FOOD_CD = #{foodCd}
 		   AND FOOD_STEP_TYPE = (SELECT GROUP_ID FROM TB_COMMONCD WHERE CODE_ID = #{foodType})
+	</update>
+	
+	<update id="deleteFoodInfo" parameterType="hashmap"> 
+		UPDATE TB_FOODINFO 
+		   SET DEL_YN = 'N'
+		 WHERE CODE_ID = #{foodCd}
 	</update>
 </mapper>
 

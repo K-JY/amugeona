@@ -1,4 +1,4 @@
-import com.amugeona.amugeona.common.UserSha256;
+import com.amugeona.amugeona.menupick.common.UserSha256;
 
 public class main {
 	public static void main(String[] args) {

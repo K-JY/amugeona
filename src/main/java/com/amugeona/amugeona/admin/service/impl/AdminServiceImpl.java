@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.amugeona.amugeona.admin.dao.AdminDAO;
 import com.amugeona.amugeona.admin.service.AdminService;
-import com.amugeona.amugeona.dao.AmugeonaDAO;
+import com.amugeona.amugeona.menupick.dao.AmugeonaDAO;
 
 @Service("adminService")
 public class AdminServiceImpl implements AdminService{
@@ -50,6 +50,11 @@ public class AdminServiceImpl implements AdminService{
 	public int updateFoodMap(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return adminDAO.updateFoodMap(map);
+	}
+	@Override
+	public int deleteFoodInfo(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDAO.deleteFoodInfo(map);
 	}
 
 }

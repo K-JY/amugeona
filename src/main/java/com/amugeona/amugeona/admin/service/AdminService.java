@@ -22,5 +22,7 @@ public interface AdminService {
 	public int updateFoodInfo(Map<String,Object> map) throws Exception;
 	
 	public int updateFoodMap(Map<String,Object> map) throws Exception;
+	
+	public int deleteFoodInfo(Map<String,Object> map) throws Exception;
 
 }

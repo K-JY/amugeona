@@ -7,13 +7,44 @@ var worldCup = {
 		});
 		
 		$(document).on('click','label[name="foodBtn"]',function(){
-			var idx = $(this).attr('for').replace('foodValue','');
-			worldCup.click(idx);
+			worldCup.effect($(this));
 		});
 		
 		$(document).on('error','img',function(){
 			
 		});
+	},
+	effectTime : 400,
+	effect : function(element){
+		var idx1 = $('label[name="foodBtn"]').index(element);
+		var idx2;
+		
+		var idx = element.attr('for').replace('foodValue','');
+		
+		if(idx1 == 0){
+			idx2 = 1;
+		}else{
+			idx2 = 0;
+		}
+		
+		$(".foodBtn").eq(idx2).animate({
+			width: "0px",
+			height: "0px"
+		},worldCup.effectTime);
+		
+		$(".foodBtn").eq(idx1).animate({
+			width: "50%",
+			height: "350px"
+		},worldCup.effectTime,function(){
+			$(".foodBtn").eq(idx1).animate({
+				width: "45%",
+				height: "300px"
+			},worldCup.effectTime,function(){
+				setTimeout("worldCup.click("+idx+")", worldCup.effectTime);
+				
+			})
+		});
+
 	},
 	init : function(){ // 최초 초기화
 		worldCup.event();
@@ -48,6 +79,16 @@ var worldCup = {
 		
 		$('#type-contents').empty();
 		$('#type-contents').append(html);
+		
+		$(".foodBtn").eq(0).animate({
+			  left:0
+			},worldCup.effectTime
+		);
+		
+		$(".foodBtn").eq(1).animate({
+			  right:0
+			},worldCup.effectTime
+		);
 		
 		worldCup.lvView();
 	},

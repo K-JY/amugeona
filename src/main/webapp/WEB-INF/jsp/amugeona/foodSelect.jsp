@@ -9,20 +9,37 @@
 		<script type="text/javascript" src="/js/amugeona/foodSelect.js"></script>
 		<jsp:include page="/WEB-INF/jsp/common/header.jsp" />
 		<!-- Banner -->
-		<form id="frm" action="/amu/worldCup.do" method="POST">
-				<input type="hidden" id="data" name="data" value="<c:forEach var="list" items="${list}" varStatus="status">${list.FOOD_CD}|</c:forEach>"/>
+		<form id="worldCupFrm" action="/amu/worldCup.do" method="POST">
+			<input type="hidden" id="data" name="data" value="<c:forEach var="list" items="${list}" varStatus="status">${list.FOOD_CD}|</c:forEach>"/>
 		</form>
-		<section id="middle">
-			<p id="typeTitle"></p>
-			<section id="type-contents">
+		
+		<form id="mapListFrm" action="/amu/mapList.do" method="POST">
+			<input type="hidden" id="foodName" name="foodName" value=""/>
+		</form>
+		<div id="middle">
+    		<p id="typeTitle">결과</p>
+			<div class="swiper-container" id="type-contents">
+				<div class="swiper-wrapper">
 				<c:forEach var="list" items="${list}" varStatus="status">
-					<a href="/amu/typeSelect.do" class="button style2 scrolly mt20">${list.CODE_NAME}</a>
+					<div class="swiper-slide" style="background: none;">
+						<label class="button style2 scrolly foodListBtn" name="foodBtn" for="foodValue1" style="right: 0px;">
+							<input type="hidden" name="foodValue" id="foodValue${status.index}" value="${list.FOOD_CD}">${list.CODE_NAME}<br>
+							<input type="hidden" name="foodNameValue" id="foodNameValue${status.index}" value="${list.CODE_NAME}">
+							<img src="${list.IMG}" onerror="this.src='/images/common/no_image.jpg'" class="foodImg2">
+						</label>
+					</div>
 				</c:forEach>
-			</section>
-			<section id="btn-list">
-				<a href="#" class="button scrolly mt20" id="nextBtn" name="typeBtn">아무거나 월드컵</a>
-			</section>
-		</section>
+				</div>
+				<!-- Add Pagination -->
+		        <div class="swiper-pagination"></div>
+		        <!-- Add Arrows -->
+		        <div class="swiper-button-next"></div>
+		        <div class="swiper-button-prev"></div>
+			</div>
+			<a href="#" class="button scrolly centerBtn mt10" id="mapBtn">근처맛집찾기</a>
+		    <br/>
+		    <a href="#" class="button scrolly centerBtn mt20" id="worldCupBtn">아무거나 월드컵</a>
+		</div>
 		
 		<jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
 	</body>

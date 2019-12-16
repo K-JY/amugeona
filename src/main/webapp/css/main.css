@@ -145,7 +145,7 @@ a {
 	-webkit-transition: border-color 0.35s ease-in-out, color 0.35s ease-in-out;
 	-ms-transition: border-color 0.35s ease-in-out, color 0.35s ease-in-out;
 	transition: border-color 0.35s ease-in-out, color 0.35s ease-in-out;
-	color: #ef777c;
+	color: #f2b705;
 	text-shadow: 0 0 0.5px rgba(53, 184, 143, 0.25);
 	text-decoration: none;
 	border-bottom: dotted 1px rgba(53, 184, 143, 0.5);
@@ -1430,10 +1430,6 @@ br.clear {
 
 /* Sections/Article */
 
-	section, article {
-		margin-bottom: 3em;
-	}
-
 	section > :last-child,
 	article > :last-child,
 	section:last-child,
@@ -1741,7 +1737,7 @@ br.clear {
 			button.style2.on,
 			.button.style2.on ,
 			.redBorder.on{
-				background: rgb(255, 31, 40);
+				background: rgb(242, 183, 5);
 				color: #fff !important;
 				text-shadow: 0 0 0.5px rgba(255, 255, 255, 0.25) !important;
 			}
@@ -2048,14 +2044,14 @@ br.clear {
 		color: #fff;
 		text-shadow: 0 0 0.5px rgba(255, 255, 255, 0.25);
 		text-align: center;
-		background: #ef777c bottom center no-repeat;
+		background: #f2b705 bottom center no-repeat;
 		padding: 5em 0 5em 0;
 		margin: 0;
 		background-size: 125% auto;
 	}
 
 		#middle .button {
-			color: #f93038;
+			color: #f2b705;
 			text-shadow: 0 0 0.5px rgba(53, 184, 130, 0.25);
 		}
 
@@ -2085,21 +2081,13 @@ br.clear {
 
 	#footer {
 		position: relative;
-		color: #fff;
-		text-shadow: 0 0 0.5px rgba(255, 255, 255, 0.25);
-		text-align: center;
-		margin: 4.5em 0 0 0;
+	    color: #fff;
+	    text-shadow: 0 0 0.5px rgba(255, 255, 255, 0.25);
+	    text-align: center;
+	    padding-top: 30px;
+	    background: black;
+	    padding-bottom: 10px;
 	}
-
-		#footer:after {
-			content: '';
-			display: block;
-			position: absolute;
-			top: -4.5em;
-			left: 50%;
-			height: 4.5em;
-			border-left: solid 1px #fff;
-		}
 
 		#footer a {
 			color: #fff;
@@ -2108,7 +2096,7 @@ br.clear {
 		}
 
 			#footer a:hover {
-				color: #ef777c;
+				color: #f2b705;
 				text-shadow: 0 0 0.5px rgba(69, 200, 159, 0.25);
 				border-bottom-color: rgba(53, 184, 143, 0.5);
 			}
@@ -2444,9 +2432,11 @@ br.clear {
 		/* Banner */
 
 			#middle {
-				padding: 3em 2em 3em 2em;
+				padding: 3em 2em 0em 2em;
 				background-size: auto 150%;
-				height: 600px;
+				overflow: hidden;
+   		 		height: 600px;
+				
 			}
 
 				#middle header {
@@ -2490,7 +2480,7 @@ br.clear {
 	padding: 3em 2em 3em 2em;
     height: 10px;
     text-align: center;
-    background: #ef777c;
+    background: #f2b705;
     color: white;
     margin-bottom: 0em;
 }
@@ -2501,6 +2491,11 @@ br.clear {
     overflow: scroll;
 }
 
+.map-contents{
+	margin: 2em 0 0 0;
+	height: 200px;
+	overflow:hidden;
+}
 .typeBtn{
 	width: 40%;
     margin: 30px 10px 10px 10px;
@@ -2524,8 +2519,8 @@ br.clear {
     height: 100px;
     padding-top: 40px;
     font-size: 20px;
-    background: #ef777c;
-    box-shadow: inset 0 0 0 1px #ef777c;
+    background: #f2b705;
+    box-shadow: inset 0 0 0 1px #f2b705;
 }
 
 #btn-list{
@@ -2539,7 +2534,12 @@ br.clear {
     margin: 0px;
     width:45%
 }
-
+.centerBtn{
+	height: 50px;
+    padding-top: 15px;
+    margin: 0px;
+    width:80%
+}
 .leftBtn{
 	height: 50px;
     padding-top: 15px;
@@ -2560,6 +2560,12 @@ br.clear {
     height: 300px;
     padding-top: 40px;
     font-size: 15px;
+}
+.foodBtn:nth-child(1){
+	left:-100%
+}
+.foodBtn:nth-child(2){
+	right:-100%
 }
 .bannerImg{
 	width: 100%;
@@ -2600,7 +2606,7 @@ br.clear {
     width: 80%;
     height: 380px;
     background-color: #fff;
-    border: 5px solid #f93038;
+    border: 5px solid #f2b705;
     z-index: 10;
     border-radius: 3em;
 }
@@ -2651,7 +2657,7 @@ a.btn-layerClose:hover {
 
 .pop-conts{
 	text-align: center;
-    color: #f93038;
+    color: #f2b705;
     font-size: 20px;
 }
 
@@ -2663,6 +2669,36 @@ a.btn-layerClose:hover {
 }
 
 .redBorder{
-	border: 2px solid #f93038;
-    color: #f93038;
+	border: 2px solid #f2b705;
+    color: #f2b705;
+}
+.foodListBtn{
+	width: 100%;
+    margin: 0px 3% 10px 3%;
+    height: 240px;
+    padding-top: 40px;
+    font-size: 15px;
+}
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
 }

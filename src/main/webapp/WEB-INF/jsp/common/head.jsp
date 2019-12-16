@@ -5,11 +5,13 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="/css/main.css?201912102013" />
-<noscript><link rel="stylesheet" href="/css/noscript.css?201912021505" /></noscript>
+<link rel="stylesheet" href="/css/map.css?201912102013" />
+<link rel="stylesheet" href="/css/swiper.min.css">
+
 <script type="text/javascript" src="/js/lib/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="/js/lib/snowfall.jquery.js"></script>
 <script type="text/javascript" src="/js/init.js"></script>
-
+<script type="text/javascript" src="/js/lib/swiper.min.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154337728-1"></script>
 <script>

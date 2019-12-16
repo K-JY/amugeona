@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-import com.amugeona.amugeona.common.dao.AbstractDAO;
+import com.amugeona.amugeona.menupick.common.dao.AbstractDAO;
 
 
 @Repository("adminDAO")
@@ -50,4 +50,8 @@ public class AdminDAO extends AbstractDAO{
 		return (Integer)insert("admin.updateFoodMap", map);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public int deleteFoodInfo(Map<String, Object> map) throws Exception {
+		return (Integer)insert("admin.deleteFoodInfo", map);
+	}
 }
