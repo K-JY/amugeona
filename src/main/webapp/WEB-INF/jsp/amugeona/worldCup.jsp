@@ -9,6 +9,12 @@
 		<script type="text/javascript" src="/js/amugeona/worldCup.js"></script>
 		<jsp:include page="/WEB-INF/jsp/common/header.jsp" />
 		<!-- Banner -->
+		<form id="frm" method="POST">
+			<input type="hidden" id="foodNm" name="foodNm" value=""/>
+			<input type="hidden" id="typeData" name="typeData" value="${typeData}"/>
+			<input type="hidden" id="stepData" name="stepData" value="${stepData}"/>
+		</form>
+
 		<c:forEach var="list" items="${list}" varStatus="status">
 			<input type="hidden" id="food${status.index}" name="foodData" value="${list.CODE_ID}|${list.CODE_NAME}|${list.IMG}"/>
 		</c:forEach>

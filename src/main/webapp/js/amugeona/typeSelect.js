@@ -1,3 +1,7 @@
+init.ready = function(){
+	amugeona.btnEvent();
+};
+
 var amugeona = {
 	nullList: ['TY026','TY027','TY028','TY029','TY030','TY031','TY032'],
 	typeList: new Array(),
@@ -9,7 +13,7 @@ var amugeona = {
 		
 		$(document).on('click','#nextBtn',function(e){
 			if(!$('input[name=typeRadioBox]').is(':checked')){
-				alert('메뉴를 선택해 주세요.');
+				common.alertPop("","메뉴를 선택해 주세요.");
 				return;
 			}
 			var data = $('input[name=typeRadioBox]:checked').val();
@@ -43,6 +47,21 @@ var amugeona = {
 
 			common.ajax('/amu/ajaxTypeList.do',paramData,amugeona.typeSuccessFn, amugeona.typeErrorFn);
 		})
+		
+		$(document).on('click','#preBtn',function(e){
+
+			var data = $('input[name=typeRadioBox]:checked').val();
+
+			amugeona.typeList.pop();
+			if(amugeona.typeList.length == 0){
+				common.ajax('/amu/ajaxTypeList.do',{category:'CT001'},amugeona.typeSuccessFn, amugeona.typeErrorFn);
+			}else{
+				var paramData = amugeona.typeList[amugeona.typeList.length-1];
+
+				common.ajax('/amu/ajaxTypeList.do',paramData,amugeona.typeSuccessFn, amugeona.typeErrorFn);
+			}
+			
+		})
 	},
 	typeSuccessFn : function(data){ // type 데이터 전송 완료 후 새로운 type 데이터 받음
 		var list = data.list;
@@ -57,7 +76,11 @@ var amugeona = {
 		}
 		if(list.length%2 == 1) html1 += html.nullBtn();
 		
-		html2 = html.nextBtn();
+		html2 += html.nextBtn();
+		if(amugeona.typeList.length != 0){
+			html2 += html.preBtn();
+		}
+		$("#typeTitle").html(list[0].TITLE_NAME);
 		$('#type-contents').append(html1);
 		$("#btn-list").append(html2);
 	},
@@ -85,11 +108,11 @@ var html = {
 		return html;
 	},
 	nextBtn : function(){
-		var html = '<label class="button scrolly" id="nextBtn" name="typeBtn">다음 ></label>';
+		var html = '<label class="button scrolly rightBtn" id="nextBtn" name="typeBtn">다음 ></label>';
 		return html;
 	},
 	preBtn : function(){
-		var html = '';
+		var html = '<label class="button scrolly leftBtn" id="preBtn" name="typeBtn">< 이전</label>';
 		return html;
 	},
 	data : function(id, value){
@@ -98,7 +121,5 @@ var html = {
 	}
 }
 
-init.ready = function(){
-	amugeona.btnEvent();
-};
+
 	

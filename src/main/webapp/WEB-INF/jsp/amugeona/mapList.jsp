@@ -7,6 +7,10 @@
 <body class="is-preload">
 	<!-- <script type="text/javascript" src="/js/amugeona/mapList.js"></script> -->
 	<jsp:include page="/WEB-INF/jsp/common/header.jsp" />
+	<form id="backFrm" action="/amu/foodSelect.do">
+		<input type="hidden" id="typeData" name="typeData" value="${typeData}"/>
+		<input type="hidden" id="stepData" name="stepData" value="${stepData}"/>
+	</form>
 	<div id="middle" style="height:700px;">
 		<div class="map_wrap">
 		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
@@ -52,6 +56,13 @@
 	//searchPlaces();
 
 	init.ready = function(){
+		common.backUrl = function(){
+			if($("#typeData").val() == ""){
+				location.href="/main.do";
+				return;
+			}
+			$("#backFrm").submit();
+		}
 		if (navigator.geolocation) { // GPS를 지원하면
 		    navigator.geolocation.getCurrentPosition(function(position) {
 				currentPosition = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -97,7 +108,7 @@
 	    	x : currentPosition.Ha, 
 	    	y : currentPosition.Ga,
 	    	radius : 1000,
-	    	useMapCenter : true
+	    	sort : kakao.maps.services.SortBy.DISTANCE
 	    }); 
 	}
 
@@ -114,17 +125,20 @@
 	        
 	        rolling();
 	        
+	        kakaoMapUrl = $(".swiper-slide-active input[name=placeUrl]").val();
 	        setMapTwoPosition(currentPosition,firstPosition);
 	        
 
 	    } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
 
-	        alert('검색 결과가 존재하지 않습니다.');
+	        common.alertPop('','검색 결과가 존재하지 않습니다.',function(){
+	        	$("#backBtn").click();
+	        });
 	        return;
 
 	    } else if (status === kakao.maps.services.Status.ERROR) {
 
-	        alert('검색 결과 중 오류가 발생했습니다.');
+	    	common.alertPop('','검색 결과 중 오류가 발생했습니다.');
 	        return;
 
 	    }

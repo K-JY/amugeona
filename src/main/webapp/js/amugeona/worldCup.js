@@ -1,3 +1,16 @@
+init.ready = function(){
+	worldCup.init();
+	common.backUrl = function(){
+		if($("#typeData").val() == ""){
+			location.href="/main.do";
+		}else{
+			$("#frm").attr('action','/amu/foodSelect.do');
+			$("#frm").submit();
+		}
+		
+	}
+}
+
 var worldCup = {
 	food : new Array(),
 	nextFoodList : new Array(),
@@ -10,8 +23,9 @@ var worldCup = {
 			worldCup.effect($(this));
 		});
 		
-		$(document).on('error','img',function(){
-			
+		$(document).on('click','#mapListBtn',function(){
+			$("#frm").attr('action','/amu/mapList.do');
+			$("#frm").submit();
 		});
 	},
 	effectTime : 400,
@@ -113,6 +127,7 @@ var worldCup = {
 	completeFood : function(){
 		var completeFood = worldCup.food[0];
 		var html = htmlTemplete.complete(completeFood.foodName, completeFood.foodImg);
+		$("#foodNm").val(completeFood.foodName);
 		$("#footer").after(html);
 	},
 	click : function(idx){
@@ -181,14 +196,15 @@ var htmlTemplete = {
 		var html = '';
 		html += '<div class="dim-layer" style="display: block;">';
 		html += '<div class="dimBg"></div>';
-		html += '<div id="layer2" class="pop-layer">';
-		html += '<div class="pop-container">';
+		html += '<div id="layer2" class="pop-layer" style="padding: 0px 20px;">';
+		html += '<div class="pop-container" style="margin-bottom: 30px;">';
 		html += '<div class="pop-conts">';
 		html += '<img src="/images/common/1st.png" class="medalImg">';
-		html += foodName+'<br/><img src="'+foodImg+'" onerror="this.src=\'/images/common/no_image.jpg\'" class="foodImg1">';
+		html += '<p style="margin: 20px 0px 0px 0px;">'+foodName+'</p><img src="'+foodImg+'" onerror="this.src=\'/images/common/no_image.jpg\'" class="foodImg1">';
 		html += '</div>';
 		html += '</div>';
-		html += '<label class="button scrolly style2 on firstBtn" id="firstBtn" name="typeBtn">처음으로 ></label>';
+		html += '<label class="button scrolly style2 on rightBtn" style="font-size: 15px;" id="firstBtn" name="typeBtn">처음으로</label>';
+		html += '<label class="button scrolly style2 on leftBtn" style="font-size: 15px;" id="mapListBtn" name="typeBtn">근처맛집찾기</label>';
 		html += '</div>';
 		html += '</div>';
 		
@@ -196,6 +212,3 @@ var htmlTemplete = {
 	}
 }
 
-init.ready = function(){
-	worldCup.init();
-}

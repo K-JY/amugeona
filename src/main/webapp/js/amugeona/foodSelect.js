@@ -1,30 +1,43 @@
 init.ready = function(){
 	food.click();
 	food.init();
+	common.backUrl = function(){
+		location.href = "/amu/typeSelect.do";
+	}
 }
 
 var food = {
 	click : function(){
 		$("#worldCupBtn").on("click",function(){
-			$("#worldCupFrm").submit();
+			$("#frm").attr("action","/amu/worldCup.do");
+			$("#frm").submit();
 		});
 		
 		$("#mapBtn").on("click",function(){
 			var foodList = $(".foodListBtn.on");
 			if(foodList.length == 0){
-				alert("메뉴를 선택해 주세요.");
+				common.alertPop("","메뉴를 선택해 주세요.");
 				return;
 			}
 			
 			var foodValue = $(".foodListBtn.on input[name=foodNameValue]").val();
 			$("#foodNm").val(foodValue);
-			$("#mapListFrm").submit();
+			$("#frm").attr("action","/amu/mapList.do");
+			$("#frm").submit();
 		});
 		
 		$(".foodListBtn").on("click",function(){
 			$(".foodListBtn").removeClass("on");
 			$(this).addClass("on");
-		})
+		});
+		
+		$("#randomWorldCupBtn").on("click",function(){
+			location.href="/amu/randomWorldCup.do";
+		});
+		
+		$("#mainBtn").on("click",function(){
+			location.href="/main.do";
+		});
 	},
 	init : function(){
 		var swiper = new Swiper('.swiper-container', {

@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="/css/main.css?201912102013" />
 <link rel="stylesheet" href="/css/map.css?201912102013" />
 <link rel="stylesheet" href="/css/swiper.min.css">
+<link rel="stylesheet" href="/css/pop.css">
+<link rel="stylesheet" href="/css/swiper.custom.css">
 
 <script type="text/javascript" src="/js/lib/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="/js/lib/snowfall.jquery.js"></script>

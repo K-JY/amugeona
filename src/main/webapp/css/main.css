@@ -23,7 +23,8 @@ section, summary, time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;}
+	vertical-align: baseline;
+	}
 
 
 article, aside, details, figcaption, figure,
@@ -148,7 +149,6 @@ a {
 	color: #f2b705;
 	text-shadow: 0 0 0.5px rgba(53, 184, 143, 0.25);
 	text-decoration: none;
-	border-bottom: dotted 1px rgba(53, 184, 143, 0.5);
 }
 
 sub {
@@ -177,6 +177,7 @@ blockquote {
 
 p, ul, ol, dl, table {
 	margin-bottom: 1em;
+	font-size: 14px;
 }
 
 header {
@@ -2486,8 +2487,7 @@ br.clear {
 }
 
 #type-contents{
-	margin: 2em 0 0 0;
-	height: 320px;
+	height: 400px;
     overflow: scroll;
 }
 
@@ -2577,7 +2577,7 @@ br.clear {
 	margin-top:20px;
 }
 .foodImg1{
-	width: 80%;
+	width: 70%;
 	margin-top:20px;
 }
 .mt20{
@@ -2586,86 +2586,6 @@ br.clear {
 
 .mb20{
 	margin-bottom:20px;
-}
-
-.pop-layer .pop-container {
-  padding: 20px 25px;
-  text-align : center;
-}
-
-.pop-layer p.ctxt {
-  color: #666;
-  line-height: 25px;
-}
-
-.pop-layer {
- 	display: none;
-    position: absolute;
-    top: 20%;
-    left: 10%;
-    width: 80%;
-    height: 380px;
-    background-color: #fff;
-    border: 5px solid #f2b705;
-    z-index: 10;
-    border-radius: 3em;
-}
-
-.dim-layer {
-  display: none;
-  position: fixed;
-  _position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 100;
-}
-
-.dim-layer .dimBg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  opacity: .5;
-  filter: alpha(opacity=50);
-}
-
-.dim-layer .pop-layer {
-  display: block;
-  text-align: center;
-}
-
-a.btn-layerClose {
-  display: inline-block;
-  height: 25px;
-  padding: 0 14px 0;
-  border: 1px solid #304a8a;
-  background-color: #3f5a9d;
-  font-size: 13px;
-  color: #fff;
-  line-height: 25px;
-}
-
-a.btn-layerClose:hover {
-  border: 1px solid #091940;
-  background-color: #1f326a;
-  color: #fff;
-}
-
-.pop-conts{
-	text-align: center;
-    color: #f2b705;
-    font-size: 20px;
-}
-
-.medalImg{
-	right: 1%;
-    width: 100px;
-    position: fixed;
-    top: 18%;
 }
 
 .redBorder{
@@ -2679,26 +2599,4 @@ a.btn-layerClose:hover {
     padding-top: 40px;
     font-size: 15px;
 }
-.swiper-container {
-    width: 100%;
-    height: 100%;
-}
-.swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
 
-    /* Center slide text vertically */
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-}

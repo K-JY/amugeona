@@ -63,6 +63,7 @@
         WHERE A.FOOD_CD = B.CODE_ID
           AND B.DEL_YN = 'Y' 
         GROUP BY A.FOOD_CD
+        ORDER BY B.CODE_NAME
 		
 	</select>
 	

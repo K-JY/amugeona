@@ -2,6 +2,7 @@ init.ready = function(){
 	main.click();
 }
 
+
 var main = {
 	click : function(){
 		$(document).on("click","#size1div, #size2div",function(){

@@ -80,6 +80,8 @@ public class AmugeonaController {
 		
 		List<Map<String, Object>> list = amugeonaService.selectFoodList(typeMap);
 		mv.addObject("list", list);
+		mv.addObject("typeData", typeData);
+		mv.addObject("stepData", stepData);
 
 		return mv;
 	}
@@ -99,11 +101,17 @@ public class AmugeonaController {
 			list.add(value[i]);
 		}
 		
+		String stepData = request.getParameter("stepData"); // stepData
+		String typeData = request.getParameter("typeData"); // stepData
+		
 		paramMap.put("list", list);
 		
 		List<Map<String,Object>> result = amugeonaService.selectFoodWorldCup(paramMap);
+		
 		mv.addObject("list", result);
 		
+		mv.addObject("typeData", typeData);
+		mv.addObject("stepData", stepData);
 		return mv;
 	}
 	
@@ -113,14 +121,16 @@ public class AmugeonaController {
 		logger.info("==== 카카오 맵 음식점 찾기 화면 =====");
 		ModelAndView mv = new ModelAndView("/amugeona/mapList");
 		
-		String foodNm = request.getParameter("foodNm"); // foodCd;
-		
+		String foodNm = request.getParameter("foodNm"); // foodCd
+		String stepData = request.getParameter("stepData"); // stepData
+		String typeData = request.getParameter("typeData"); // stepData
 		if(Util.isBlank(foodNm)) {
 			mv = new ModelAndView("redirect:/main.do");
 			return mv;
 		}
 		mv.addObject("foodNm", foodNm);
-
+		mv.addObject("stepData", stepData);
+		mv.addObject("typeData", typeData);
 		return mv;
 	}
 	
@@ -131,6 +141,7 @@ public class AmugeonaController {
 		ModelAndView mv = new ModelAndView("/amugeona/worldCup");
 		
 		String size = request.getParameter("size");
+		
 		if(Util.isBlank(size)) {
 			size = "8";
 		}
@@ -180,6 +191,19 @@ public class AmugeonaController {
 		
 		resultMap.put("category", (String)paramMap.get("category"));
 		List<Map<String, Object>> list = amugeonaService.selectTypeList(resultMap);
+		resultMap.put("list", list);
+		
+		return resultMap; // 화면으로 던져준다!!
+		 
+	}
+	
+	@RequestMapping(value = "/amu/ajaxFirstTypeList.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> ajaxFirstTypeList( @RequestBody Map<Object, Object> paramMap, ModelMap model) throws Exception {
+		System.out.println("/amugeona/ajaxFirstTypeList.do");
+		Map<String, Object> resultMap = new HashMap<String,Object>();
+		
+		List<Map<String, Object>> list = amugeonaService.selectTypeFirstList(resultMap);
 		resultMap.put("list", list);
 		
 		return resultMap; // 화면으로 던져준다!!

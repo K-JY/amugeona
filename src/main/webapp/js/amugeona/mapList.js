@@ -19,6 +19,7 @@ var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 //searchPlaces();
 
 init.ready = function(){
+	
 	if (navigator.geolocation) { // GPS를 지원하면
 	    navigator.geolocation.getCurrentPosition(function(position) {
 			currentPosition = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude);

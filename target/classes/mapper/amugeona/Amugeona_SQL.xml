@@ -8,24 +8,28 @@
 		     , B.GROUP_ID
 		     , A.TYPE_CATEGORY
 		     , A.PARENT_CATEGORY 
+             , C.CODE_NAME AS TITLE_NAME
 		  FROM TB_CATEGORYMAP A
 		     , TB_COMMONCD B 
-		 WHERE A.TYPE_CD = B.CODE_ID 
+             , TB_COMMONCD C
+		 WHERE A.TYPE_CD = B.CODE_ID  
+           AND A.PARENT_CATEGORY = C.CODE_ID
 		   AND A.PARENT_CATEGORY = 'CT001'
-	  ORDER BY A.IDX ASC
 	</select>
 	
-	<select id="selectTypeList" parameterType="hashmap" resultType="hashmap"> 
+	<select id="selectTypeList" parameterType="hashmap" resultType="hashmap">
 		SELECT A.TYPE_CD
 		     , B.CODE_NAME
 		     , B.GROUP_ID
 		     , A.TYPE_CATEGORY
 		     , A.PARENT_CATEGORY 
+             , C.CODE_NAME AS TITLE_NAME
 		  FROM TB_CATEGORYMAP A
 		     , TB_COMMONCD B 
-		 WHERE A.TYPE_CD = B.CODE_ID 
+             , TB_COMMONCD C
+		 WHERE A.TYPE_CD = B.CODE_ID  
+           AND A.PARENT_CATEGORY = C.CODE_ID
 		   AND A.PARENT_CATEGORY = #{category}
-	  ORDER BY A.IDX ASC
 	</select>
 	
 	<select id="selectFoodList" parameterType="hashmap" resultType="hashmap"> 
