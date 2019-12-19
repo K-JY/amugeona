@@ -16,11 +16,16 @@
 <link rel="stylesheet" href="/css/swiper.min.css">
 <link rel="stylesheet" href="/css/pop.css">
 <link rel="stylesheet" href="/css/swiper.custom.css">
+<link rel="stylesheet" href="/css/boom.css">
+<link rel="stylesheet" href="/css/jquery.mCustomScrollbar.css">
 
 <script type="text/javascript" src="/js/lib/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/js/lib/jquery-ui.min.js"></script>
 <script type="text/javascript" src="/js/lib/snowfall.jquery.js"></script>
 <script type="text/javascript" src="/js/init.js"></script>
 <script type="text/javascript" src="/js/lib/swiper.min.js"></script>
+<script type="text/javascript" src="/js/lib/boom.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.mCustomScrollbar.concat.min.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154337728-1"></script>
 <script>

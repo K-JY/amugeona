@@ -43,8 +43,7 @@ var htmlTemplete  = {
 		html += '<div id="layer2" class="pop-layer">';
 		html += '<div class="pop-container">';
 		html += '<div class="pop-conts">';
-		html += '랜덤메뉴고르기';
-		html += '<br/>';
+		html += '<p class="pop-title">랜덤메뉴고르기</p>';
 		html += '<p style="margin-top: 40px;margin-bottom: 0px;font-size: 15px;">선택할 메뉴의 갯수를 골라주세요</p>';
 		html += '<br/>';
 		html += '<form id="frm" action="/amu/randomWorldCup.do" method="POST">'

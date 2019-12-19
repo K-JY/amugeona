@@ -105,8 +105,7 @@
 
 	    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 	    ps.keywordSearch( keyword, placesSearchCB,{
-	    	x : currentPosition.Ha, 
-	    	y : currentPosition.Ga,
+	    	location : currentPosition,
 	    	radius : 1000,
 	    	sort : kakao.maps.services.SortBy.DISTANCE
 	    }); 

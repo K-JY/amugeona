@@ -9,6 +9,38 @@ var amugeona = {
 		$(document).on('click','label[name=typeBtn]',function(e){
 			$('label[name=typeBtn]').removeClass('on');
 			$(this).addClass('on');
+			$("#"+$(this).attr("for")).attr("checked",true);
+
+			var data = $('input[name=typeRadioBox]:checked').val();
+			var paramData = {
+				typeCd:data.split('|')[0],
+				category:data.split('|')[1],
+				step:data.split('|')[2],
+			}
+			
+			amugeona.typeList.push(paramData);
+			
+			if(paramData.category == 'CT009'){// 마지막 타입일 때
+				var typeData = '';
+				var categoryData = '';
+				var stepData = '';
+				for(var i = 0;i<amugeona.typeList.length;i++){
+					if(amugeona.nullList.indexOf(amugeona.typeList[i].typeCd) == -1){
+						typeData += amugeona.typeList[i].typeCd+'|';
+						categoryData += amugeona.typeList[i].category+'|';
+						stepData += amugeona.typeList[i].step+'|';
+					}
+					
+				}
+				$("#typeData").val(typeData);
+				$("#categoryData").val(categoryData);
+				$("#stepData").val(stepData);
+				$("#frm").submit();
+				
+				return;
+			} 
+
+			common.ajax('/amu/ajaxTypeList.do',paramData,amugeona.typeSuccessFn, amugeona.typeErrorFn);
 		});
 		
 		$(document).on('click','#nextBtn',function(e){
@@ -76,12 +108,13 @@ var amugeona = {
 		}
 		if(list.length%2 == 1) html1 += html.nullBtn();
 		
-		html2 += html.nextBtn();
 		if(amugeona.typeList.length != 0){
 			html2 += html.preBtn();
 		}
 		$("#typeTitle").html(list[0].TITLE_NAME);
 		$('#type-contents').append(html1);
+		$("label[name=typeBtn]").hide();
+		$("label[name=typeBtn]").show('drop',{},500);
 		$("#btn-list").append(html2);
 	},
 	typeErrorFn : function(data){
@@ -108,11 +141,11 @@ var html = {
 		return html;
 	},
 	nextBtn : function(){
-		var html = '<label class="button scrolly rightBtn" id="nextBtn" name="typeBtn">다음 ></label>';
+		var html = '<label class="button scrolly rightBtn" id="nextBtn">다음 ></label>';
 		return html;
 	},
 	preBtn : function(){
-		var html = '<label class="button scrolly leftBtn" id="preBtn" name="typeBtn">< 이전</label>';
+		var html = '<label class="button scrolly leftBtn" id="preBtn">< 이전</label>';
 		return html;
 	},
 	data : function(id, value){

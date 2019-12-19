@@ -20,7 +20,10 @@
     z-index: 10;
     border-radius: 3em;
 }
-
+.pop-title{
+	margin: 20px 0px 0px 0px;
+	font-size: 20px;
+}
 .pop-layer-alert {
  	display: block;
     position: absolute;

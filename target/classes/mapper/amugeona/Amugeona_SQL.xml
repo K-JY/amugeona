@@ -119,5 +119,30 @@ select B.FOOD_CD
 		 GROUP BY CODE_NAME) 
 		   AND DEL_YN = 'Y'
 	</select>
+	
+	<insert id="integerLogInfo" parameterType="hashmap">
+		INSERT INTO TB_LOG
+			   (
+			   	   LOG_IDX,
+			   	   LOG_TYPE1,
+			   	   LOG_TYPE2,
+			   	   LOG_CONTENT,
+			   	   COOKI_ID,
+			   	   REG_DATE,
+			   	   REG_ID,
+			   	   MOD_DATE,
+			   	   MOD_ID
+			   ) VALUES (
+			   	   #{logIdx},
+			   	   #{logType1},
+			   	   #{logType2},
+			   	   #{logContent},
+			   	   #{cookiId},
+			   	   sysdate(),
+			   	   'SYSTEM'
+			   	   sysdate(),
+			   	   'SYSTEM'
+			   )
+	</insert>
 </mapper>
 

@@ -1,8 +1,9 @@
 var init = {
 	before : function(){
-		/*if (document.location.protocol == 'http:') {
-	        document.location.href = document.location.href.replace('http:', 'https:');
+/*		if (document.location.protocol == 'http:' || window.location.host != 'www.menupick.shop' || window.location.host != 'localhost') {
+			document.location.href = 'https://www.menupick.shop' + window.location.pathname
 	    }*/
+		common.cookieCheck();
 		
 		$(document).snowfall({
 			minSize : 5,
@@ -106,6 +107,37 @@ var common = {
 				}
 				$(".dim-layer").remove();
 			});
+		},
+		cookieCheck : function(){
+			this.getCookieValue('cookieId')
+			if(this.getCookieValue('cookieId') == ""){
+				var random = Math.floor(Math.random() * 9999);
+				var date = new Date();
+			    date.setDate(date.getDate());
+			    
+			    var willCookie = "";
+			    willCookie += "cookieId=" + date.getTime()+random;
+			    
+			    document.cookie = willCookie;
+			}
+			
+		},
+		getCookieValue : function(key){
+		  let cookieKey = key + "="; 
+		  let result = "";
+		  const cookieArr = document.cookie.split(";");
+
+		  for(let i = 0; i < cookieArr.length; i++) {
+		    if(cookieArr[i][0] === " ") {
+		      cookieArr[i] = cookieArr[i].substring(1);
+		    }
+
+		    if(cookieArr[i].indexOf(cookieKey) === 0) {
+		      result = cookieArr[i].slice(cookieKey.length, cookieArr[i].length);
+		      return result;
+		    }
+		  }
+		  return result;
 		}
 	}
 

@@ -58,6 +58,8 @@ var worldCup = {
 				
 			})
 		});
+		
+		boom.start({number:12,count:6});
 
 	},
 	init : function(){ // 최초 초기화
@@ -129,6 +131,8 @@ var worldCup = {
 		var html = htmlTemplete.complete(completeFood.foodName, completeFood.foodImg);
 		$("#foodNm").val(completeFood.foodName);
 		$("#footer").after(html);
+		common.ajax('/amu/ajaxSelectFoodLog.do',{foodNm:$("#foodNm").val()});
+		boom.start();
 	},
 	click : function(idx){
 		worldCup.nextFoodList.push({
@@ -200,7 +204,7 @@ var htmlTemplete = {
 		html += '<div class="pop-container" style="margin-bottom: 30px;">';
 		html += '<div class="pop-conts">';
 		html += '<img src="/images/common/1st.png" class="medalImg">';
-		html += '<p style="margin: 20px 0px 0px 0px;">'+foodName+'</p><img src="'+foodImg+'" onerror="this.src=\'/images/common/no_image.jpg\'" class="foodImg1">';
+		html += '<p class="pop-title">'+foodName+'</p><img src="'+foodImg+'" onerror="this.src=\'/images/common/no_image.jpg\'" class="foodImg1">';
 		html += '</div>';
 		html += '</div>';
 		html += '<label class="button scrolly style2 on rightBtn" style="font-size: 15px;" id="firstBtn" name="typeBtn">처음으로</label>';

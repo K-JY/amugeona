@@ -27,8 +27,8 @@
 				
 			</div>
 			<div id="btn-list">
-				<label class="button scrolly rightBtn" id="nextBtn" name="typeBtn">다음 ></label>
-			</div>
+				<!-- <label class="button scrolly rightBtn" id="nextBtn" name="typeBtn">다음 ></label> -->
+			</div> 
 		</div>
 		<jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
 

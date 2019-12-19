@@ -17,7 +17,6 @@ var ps = new kakao.maps.services.Places();
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 // 키워드로 장소를 검색합니다
 //searchPlaces();
-
 init.ready = function(){
 	
 	if (navigator.geolocation) { // GPS를 지원하면
@@ -62,8 +61,7 @@ function searchPlaces() {
 
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
     ps.keywordSearch( keyword, placesSearchCB,{
-    	x : currentPosition.Ha, 
-    	y : currentPosition.Ga,
+    	location : currentPosition,
     	radius : 1000,
     	useMapCenter : true
     }); 

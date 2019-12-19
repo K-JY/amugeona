@@ -1,0 +1,10 @@
+.boom{
+	background: rgb(255, 255, 255);
+    width: 5.85px;
+    height: 5.85px;
+    position: absolute;
+    font-size: 0px;
+    z-index: 999999;
+    border-radius: 10px;
+    display:none;
+}

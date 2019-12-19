@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.amugeona.amugeona.common.service.LogService;
 import com.amugeona.amugeona.menupick.common.Util;
 import com.amugeona.amugeona.menupick.service.AmugeonaService;
 
@@ -36,15 +37,16 @@ import org.slf4j.LoggerFactory;
 public class AmugeonaController {
 	@Resource(name = "amugeonaService")
 	private AmugeonaService amugeonaService;
-
+	@Resource(name = "logService")
+	private LogService logService;
 	private static final Logger logger = LoggerFactory.getLogger(AmugeonaController.class);
 	@RequestMapping(value = "/amu/typeSelect.do")
-	public ModelAndView openSampleBoardList(Map<String, Object> commandMap) throws Exception {
+	public ModelAndView openSampleBoardList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("==== /amu/typeSelect.do =====");
 		logger.info("==== 메뉴 고르기 화면 =====");
 		
 		ModelAndView mv = new ModelAndView("/amugeona/typeSelect");
-		
+		Map<String, Object> commandMap = new HashMap<String, Object>();
 		List<Map<String, Object>> list = amugeonaService.selectTypeFirstList(commandMap); // 최초 메뉴 타입 조회
 		mv.addObject("list", list);
 
@@ -54,7 +56,7 @@ public class AmugeonaController {
 	
 	
 	@RequestMapping(value = "/amu/foodSelect.do")
-	public ModelAndView foodSelect(HttpServletRequest request) throws Exception {
+	public ModelAndView foodSelect(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("==== /amu/foodSelect.do =====");
 		logger.info("==== 음식 조회 화면 =====");
 		ModelAndView mv = new ModelAndView("/amugeona/foodSelect");
@@ -78,6 +80,8 @@ public class AmugeonaController {
 			typeMap.put(stepDataList[i], typeDataList[i]);
 		}
 		
+		logService.InsertTypeLog(typeMap,Util.cookieCheck(request, response)); // 타입 로그
+		
 		List<Map<String, Object>> list = amugeonaService.selectFoodList(typeMap);
 		mv.addObject("list", list);
 		mv.addObject("typeData", typeData);
@@ -87,7 +91,7 @@ public class AmugeonaController {
 	}
 	
 	@RequestMapping(value = "/amu/worldCup.do")
-	public ModelAndView worldCup(HttpServletRequest request) throws Exception {
+	public ModelAndView worldCup(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("==== /amu/worldCup.do =====");
 		logger.info("==== 음식 월드컵 =====");
 		
@@ -116,7 +120,7 @@ public class AmugeonaController {
 	}
 	
 	@RequestMapping(value = "/amu/mapList.do")
-	public ModelAndView mapList(HttpServletRequest request) throws Exception {
+	public ModelAndView mapList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("==== /amu/mapList.do =====");
 		logger.info("==== 카카오 맵 음식점 찾기 화면 =====");
 		ModelAndView mv = new ModelAndView("/amugeona/mapList");
@@ -131,11 +135,14 @@ public class AmugeonaController {
 		mv.addObject("foodNm", foodNm);
 		mv.addObject("stepData", stepData);
 		mv.addObject("typeData", typeData);
+		
+		setFoodLog(request,response,foodNm,"LG004");
+		
 		return mv;
 	}
 	
 	@RequestMapping(value = "/amu/randomWorldCup.do")
-	public ModelAndView randomWorldCup(HttpServletRequest request) throws Exception {
+	public ModelAndView randomWorldCup(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("==== /amu/randomWorldCup.do =====");
 		logger.info("==== 랜던월드컵 화면 =====");
 		ModelAndView mv = new ModelAndView("/amugeona/worldCup");
@@ -171,9 +178,18 @@ public class AmugeonaController {
 	}
 	
 	@RequestMapping(value = "/test.do")
-	public ModelAndView test(HttpServletRequest request) throws Exception {
+	public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("==== worldCup =====");
 		ModelAndView mv = new ModelAndView("/test");
+		
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "/boomtest.do")
+	public ModelAndView boomTest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("==== worldCup =====");
+		ModelAndView mv = new ModelAndView("/sample/boomtest");
 		
 		
 		return mv;
@@ -181,8 +197,8 @@ public class AmugeonaController {
 
 	@RequestMapping(value = "/amu/ajaxTypeList.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> testJson( @RequestBody Map<Object, Object> paramMap, ModelMap model) throws Exception {
-		System.out.println("/amugeona/ajaxTypeList.do");
+	public Map<String, Object> testJson(HttpServletRequest request, HttpServletResponse response, @RequestBody Map<Object, Object> paramMap, ModelMap model) throws Exception {
+		logger.info("/amugeona/ajaxTypeList.do");
 		Map<String, Object> resultMap = new HashMap<String,Object>();
 		if(Util.isBlank((String)paramMap.get("category"))) { 
 			resultMap.put("result",false); 
@@ -199,8 +215,8 @@ public class AmugeonaController {
 	
 	@RequestMapping(value = "/amu/ajaxFirstTypeList.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> ajaxFirstTypeList( @RequestBody Map<Object, Object> paramMap, ModelMap model) throws Exception {
-		System.out.println("/amugeona/ajaxFirstTypeList.do");
+	public Map<String, Object> ajaxFirstTypeList(HttpServletRequest request, HttpServletResponse response, @RequestBody Map<Object, Object> paramMap, ModelMap model) throws Exception {
+		logger.info("/amugeona/ajaxFirstTypeList.do");
 		Map<String, Object> resultMap = new HashMap<String,Object>();
 		
 		List<Map<String, Object>> list = amugeonaService.selectTypeFirstList(resultMap);
@@ -208,6 +224,53 @@ public class AmugeonaController {
 		
 		return resultMap; // 화면으로 던져준다!!
 		 
+	}
+	
+	@RequestMapping(value = "/amu/ajaxSelectFoodLog.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> ajaxSelectFoodLog(HttpServletRequest request, HttpServletResponse response, @RequestBody Map<Object, Object> paramMap, ModelMap model) throws Exception {
+		logger.info("/amugeona/ajaxSelectFoodLog.do");
+		Map<String, Object> resultMap = new HashMap<String,Object>();
+		if(Util.isBlank((String)paramMap.get("foodNm"))) { 
+			resultMap.put("result",false); 
+			return resultMap;
+		}
+		String foodNm = (String)paramMap.get("foodNm");
+		
+		if(setFoodLog(request,response,foodNm,"LG003")) {
+			resultMap.put("result",true); 
+		}else {
+			resultMap.put("result",false); 
+		}
+		
+		return resultMap; // 화면으로 던져준다!!
+		 
+	}
+	
+	public boolean setFoodLog(HttpServletRequest request, HttpServletResponse response, String foodNm, String type) {
+		String cookie = Util.cookieCheck(request, response);
+		String logIdx = Util.getLogIdx();
+		String type1 = type;
+		
+		logger.info("==== cookie : "+cookie + "=====");
+		logger.info("==== foodNm : "+foodNm + "=====");
+		logger.info("==== logIdx : "+logIdx + "=====");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("logIdx",logIdx);
+		map.put("logType1",type1);
+		map.put("logType2","");
+		map.put("logContent",foodNm);
+		map.put("cookieId",cookie);
+
+		try {
+			logService.InsertLog(map);
+		} catch (Exception e) {
+			logger.error(e.toString());
+			return false;
+		}
+		
+		return true;
 	}
 
 
