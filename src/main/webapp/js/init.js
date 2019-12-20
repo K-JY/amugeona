@@ -18,7 +18,7 @@ var init = {
 		});
 		
 		$(document).on("click","#homeBtn",function(){
-			location.href = "/main.do"; 
+			common.kakaoShare();
 		});
 		
 		$(document).on("click","#backBtn", function(){
@@ -138,6 +138,9 @@ var common = {
 		    }
 		  }
 		  return result;
+		},
+		kakaoShare : function(){
+			
 		}
 	}
 
