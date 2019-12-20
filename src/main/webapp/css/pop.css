@@ -97,3 +97,11 @@ a.btn-layerClose:hover {
     position: fixed;
     top: 18%;
 }
+
+.share-box{width:100%; height:100px;text-align:center;position: absolute;bottom:0px;z-index:9999;display:none;}
+.share-box > .share-content{border-top-left-radius: 20px;background-color:#ece7e7;width: 90%;height: 100px;bottom: 0px;border-top-right-radius: 20px;text-align:center;  display: inline-block;}
+.share-box > .share-content > .share-title{margin-left: 20px;font-size: 13px;text-align: left;}
+.share-box > .share-content > .share-content-box{border-top:1px dotted #e8e4e4;}
+.share-box > .share-content > .share-content-box > .share-empty-box{width:5%;display: inline-block;}
+.share-box > .share-content > .share-content-box > .share-content-icon{width: 20%;height: 60px;text-align: center;height: 60px;text-align: center;padding-top: 5px;display: inline-block;}
+.share-box > .share-content > .share-content-box > .share-content-icon .icon-image{width: 90%;}

@@ -4,7 +4,7 @@ var init = {
 			document.location.href = 'https://www.menupick.shop' + window.location.pathname
 	    }*/
 		common.cookieCheck();
-		
+		common.share.init();
 		$(document).snowfall({
 			minSize : 5,
 			maxSize : 10,
@@ -17,8 +17,11 @@ var init = {
 			location.href = "/main.do"; 
 		});
 		
-		$(document).on("click","#homeBtn",function(){
-			common.kakaoShare();
+		$(document).on("click","#shareBtn",function(){
+			
+			$(".share-bag").show();
+			$(".share-box").show();
+			
 		});
 		
 		$(document).on("click","#backBtn", function(){
@@ -28,6 +31,11 @@ var init = {
 			 }
 			 
 			 common.backUrl();
+		});
+		
+		$(".share-bag").on("click",function(){
+			$(".share-bag").hide();
+			$(".share-box").hide();
 		});
 	},
 	ready : function(){
@@ -139,8 +147,66 @@ var common = {
 		  }
 		  return result;
 		},
-		kakaoShare : function(){
-			
+		share : {
+			init : function(){
+				this.kakao();
+				this.facebook();
+				this.naver();
+				this.twitter();
+			},
+			kakao : function(){
+				Kakao.init('8ef7de72f55e391696ebbe3bdbb83354');
+			    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+			    Kakao.Link.createDefaultButton({
+			    	
+			    	
+			    	container: '#kakaoBtn',
+			    	objectType: 'feed',
+			    	content: {
+			    		title: '무엇을 먹을지 고민이라면? 아무거나!',
+			    		description: '#아무거나 #결정장애 #뭐먹지',
+			    		imageUrl: 'https://www.menupick.shop/images/kakaoMain.png',
+			    		link: {
+			    			mobileWebUrl: 'https://www.menupick.shop'
+			    		}
+			    	},
+			    	buttons: [
+				        {
+				        	title: '웹으로 보기',
+				        	link: {
+				        		mobileWebUrl: 'https://developers.kakao.com'
+				        	}
+				        }
+			        ]
+			    });
+			},
+			facebook : function(){
+				$("#facebookBtn").on("click",function(){
+		    		var url = 'https://www.menupick.shop/';
+		    		var encodeUrl = encodeURIComponent(url);
+		        	var facebook = 'https://www.facebook.com/sharer/sharer.php?u=';
+		        	var link = facebook + encodeUrl;
+		    		window.open(link);
+		    	});
+			},
+			naver : function(){
+				$("#naverBtn").on("click",function(){
+		    		var url = 'https://www.menupick.shop/';
+		    		var encodeUrl = encodeURIComponent(url);
+		        	var naver = 'https://share.naver.com/web/shareView.nhn?url=';
+		        	var link = naver + encodeUrl+'&title=아무거나';
+		    		window.open(link);
+		    	});
+			},
+			twitter : function(){
+				$("#twitterBtn").on("click",function(){
+		    		var url = 'https://www.menupick.shop/';
+		    		var encodeUrl = encodeURIComponent(url);
+		        	var twitter = 'https://twitter.com/intent/tweet?title=아무거나&url=';
+		        	var link = twitter + encodeUrl;
+		    		window.open(link);
+		    	});
+			}
 		}
 	}
 
