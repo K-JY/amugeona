@@ -113,8 +113,8 @@ var amugeona = {
 		}
 		$("#typeTitle").html(list[0].TITLE_NAME);
 		$('#type-contents').append(html1);
-		$("label[name=typeBtn]").hide();
-		$("label[name=typeBtn]").show('drop',{},500);
+		$("#type-contents").hide();
+		$("#type-contents").show('drop',{},500);
 		$("#btn-list").append(html2);
 	},
 	typeErrorFn : function(data){
