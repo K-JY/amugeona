@@ -19,8 +19,8 @@ var init = {
 		
 		$(document).on("click","#shareBtn",function(){
 			
-			$(".share-bag").show();
-			$(".share-box").show();
+			$(".share-bag").show('drop',{},500);
+			$(".share-box").show('drop',{},500);
 			
 		});
 		
@@ -34,8 +34,8 @@ var init = {
 		});
 		
 		$(".share-bag").on("click",function(){
-			$(".share-bag").hide();
-			$(".share-box").hide();
+			$(".share-bag").hide('drop',{},500);
+			$(".share-box").hide('drop',{},500);
 		});
 	},
 	ready : function(){
