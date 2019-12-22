@@ -19,8 +19,8 @@ var init = {
 		
 		$(document).on("click","#shareBtn",function(){
 			
-			$(".share-bag").show('drop',{},500);
-			$(".share-box").show('drop',{},500);
+			$(".share-bag").show('blind',{},500);
+			$(".share-box").show('blind',{},500);
 			
 		});
 		
@@ -34,7 +34,7 @@ var init = {
 		});
 		
 		$(".share-bag").on("click",function(){
-			$(".share-bag").hide('drop',{},500);
+			$(".share-bag").hide('fold',{},500);
 			$(".share-box").hide('drop',{},500);
 		});
 	},
@@ -149,10 +149,13 @@ var common = {
 		},
 		share : {
 			init : function(){
-				this.kakao();
-				this.facebook();
-				this.naver();
-				this.twitter();
+				if($("#shareBtn").length != 0){
+					this.kakao();
+					this.facebook();
+					this.naver();
+					this.twitter();
+				}
+				
 			},
 			kakao : function(){
 				Kakao.init('8ef7de72f55e391696ebbe3bdbb83354');
