@@ -4,7 +4,6 @@ var init = {
 			document.location.href = 'https://www.menupick.shop' + window.location.pathname
 	    }
 
-		common.share.init();
 		$(document).snowfall({
 			minSize : 5,
 			maxSize : 10,
@@ -23,7 +22,7 @@ var init = {
 		
 	},
 	after : function(){
-		
+		common.share.init();
 	},
 	btnEvent : function(){
 		// 로고 선택시 메인화면
