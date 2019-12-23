@@ -30,7 +30,7 @@
 		    </div>
 		</div>
 		<div id="btn-list" style="margin-top: 240px;">
-			<label class="button scrolly" id="kakaoBtn" name="typeBtn">카카오 맵에서 자세히 보기</label>
+			<label class="button scrolly" id="kakaoMapBtn" name="typeBtn">카카오 맵에서 자세히 보기</label>
 		</div>
 	</div>
 	
@@ -80,7 +80,7 @@
 				searchPlaces();
 				
 				kakaoMapUrl = $(".swiper-slide-active input[name=placeUrl]").val();
-				$("#kakaoBtn").on("click",function(){
+				$("#kakaoMapBtn").on("click",function(){
 					location.href = kakaoMapUrl;
 				})
 		      
