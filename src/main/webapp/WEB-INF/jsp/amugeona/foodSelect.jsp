@@ -11,7 +11,7 @@
 		<!-- Banner -->
 		<form id="frm" action="/amu/mapList.do" method="POST">
 			<input type="hidden" id="data" name="data" value="<c:forEach var="list" items="${list}" varStatus="status">${list.FOOD_CD}|</c:forEach>"/>
-			<input type="hidden" id="foodNm" name="foodNm" value=""/>
+			<input type="hidden" id="foodCd" name="foodCd" value=""/>
 			<input type="hidden" id="typeData" name="typeData" value="${typeData}"/>
 			<input type="hidden" id="stepData" name="stepData" value="${stepData}"/>
 		</form>

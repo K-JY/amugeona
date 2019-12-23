@@ -62,7 +62,7 @@ select B.FOOD_CD
         ELSE '' END AS STEP07,
         CASE WHEN FOOD_STEP_TYPE = 'CM009' THEN FOOD_TYPE 
         ELSE '' END AS STEP08
-        from tb_foodMap) A
+        from TB_FOODMAP) A
         GROUP BY A.FOOD_CD) B ,
         TB_FOODINFO C
         WHERE B.FOOD_CD = C.CODE_ID
@@ -118,6 +118,12 @@ select B.FOOD_CD
 		  FROM TB_FOODINFO
 		 GROUP BY CODE_NAME) 
 		   AND DEL_YN = 'Y'
+	</select>
+	
+	<select id="selectFoodNm" resultType="hashmap" parameterType="hashmap"> 
+		SELECT CODE_NAME
+		  FROM TB_FOODINFO
+		 WHERE CODE_ID = #{foodCd}
 	</select>
 	
 	<insert id="integerLogInfo" parameterType="hashmap">

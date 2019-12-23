@@ -2599,4 +2599,7 @@ br.clear {
     padding-top: 40px;
     font-size: 15px;
 }
+.disable{
+	overflow:hidden;
+}
 

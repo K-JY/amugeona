@@ -11,6 +11,7 @@
 		<input type="hidden" id="typeData" name="typeData" value="${typeData}"/>
 		<input type="hidden" id="stepData" name="stepData" value="${stepData}"/>
 	</form>
+	<input type="hidden" value="${foodCd }" id="foodCd"/>
 	<div id="middle" style="height:700px;">
 		<div class="map_wrap">
 		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
@@ -63,6 +64,7 @@
 			}
 			$("#backFrm").submit();
 		}
+		common.share.url="https://www.menupick.shop/amu/mapList.do?foodCd="+$("#foodCd").val();
 		if (navigator.geolocation) { // GPS를 지원하면
 		    navigator.geolocation.getCurrentPosition(function(position) {
 				currentPosition = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude);

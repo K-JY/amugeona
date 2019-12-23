@@ -12,5 +12,7 @@ public interface AmugeonaService {
 	
 	List<Map<String,Object>> selectFoodWorldCup(Map<String, Object> commandMap) throws Exception;
 	
+	Map<String,Object> selectFoodNm(Map<String, Object> commandMap) throws Exception;
+	
 	List<Map<String,Object>> selectRandomWorldCup() throws Exception;
 }

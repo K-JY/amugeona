@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.mobile.device.Device;
+import org.springframework.mobile.device.DeviceUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,6 +26,7 @@ public class amugeonaInterceptor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		Device device = DeviceUtils.getCurrentDevice(request);
 		String cookie = Util.cookieCheck(request, response);
 		String path = request.getRequestURI();
 		String logIdx = Util.getLogIdx();
@@ -48,7 +51,17 @@ public class amugeonaInterceptor implements HandlerInterceptor{
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		// TODO Auto-generated method stub
+		String userAgent = request.getHeader("User-Agent").toUpperCase();
+		String value = "";
+		
+		if(!Util.isBlank(userAgent) && userAgent.indexOf("MOBILE") > -1) {
+			value = "M";
+		}else {
+			value = "W";
+		}
+		if(modelAndView != null) {
+			modelAndView.addObject("device", value);
+		}
 		
 	}
 

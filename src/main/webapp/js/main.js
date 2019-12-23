@@ -21,6 +21,17 @@ var main = {
 		$(document).on("click","#randomMenuBtn",function(){
 			var html = htmlTemplete.randomMenu();
 			$("#footer").after(html);
+			$(".randomPop").hide();
+			$(".randomPop").show("blind",500);
+			$("body").addClass("disable");
+		});
+		
+		$(document).on("click",".randomPop",function(){
+			$(".randomPop").effect("fold",500,function(){
+				$(".randomPop").remove();
+			});
+			
+			$("body").removeClass("disable");
 		});
 		
 		$(document).on("click","#menuBtn",function(){
@@ -38,7 +49,7 @@ var main = {
 var htmlTemplete  = {
 	randomMenu : function(){
 		var html = "";
-		html += '<div class="dim-layer" style="display: block;">';
+		html += '<div class="dim-layer randomPop" style="display: block;">';
 		html += '<div class="dimBg"></div>';
 		html += '<div id="layer2" class="pop-layer">';
 		html += '<div class="pop-container">';

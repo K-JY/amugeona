@@ -1,9 +1,9 @@
 var init = {
 	before : function(){
-/*		if (document.location.protocol == 'http:' || window.location.host != 'www.menupick.shop' || window.location.host != 'localhost') {
+		if (document.location.protocol == 'http:' || (window.location.host != 'www.menupick.shop' && window.location.host != 'localhost')) {
 			document.location.href = 'https://www.menupick.shop' + window.location.pathname
-	    }*/
-		common.cookieCheck();
+	    }
+
 		common.share.init();
 		$(document).snowfall({
 			minSize : 5,
@@ -13,18 +13,31 @@ var init = {
 			round : true
 		});
 		
-		$(document).on("click","#mainTitle",function(){
+		if($("#device").val() == "W"){
+			common.alertPop("최적화 안내","해당 웹사이트는 모바일에 최적화 되어있습니다.");
+		}
+		this.btnEvent();
+		
+	},
+	ready : function(){
+		
+	},
+	after : function(){
+		
+	},
+	btnEvent : function(){
+		// 로고 선택시 메인화면
+		$("#mainTitle").on("click",function(){
 			location.href = "/main.do"; 
 		});
-		
-		$(document).on("click","#shareBtn",function(){
-			
+		// 공유버튼 클릭시 공유화면
+		$("#shareBtn").on("click",function(){
 			$(".share-bag").show('blind',{},500);
 			$(".share-box").show('blind',{},500);
-			
+			$("body").addClass("disable");
 		});
-		
-		$(document).on("click","#backBtn", function(){
+		// 뒤로가기 클릭 이벤트
+		$("#backBtn").on("click", function(){
 			 if(common.backUrl == null){
 				 location.href = "/main.do";
 				 return;
@@ -32,17 +45,12 @@ var init = {
 			 
 			 common.backUrl();
 		});
-		
+		// 공유하기 화면 닫기 
 		$(".share-bag").on("click",function(){
 			$(".share-bag").hide('fold',{},500);
 			$(".share-box").hide('drop',{},500);
+			$("body").removeClass("disable");
 		});
-	},
-	ready : function(){
-		
-	},
-	after : function(){
-		
 	}
 	
 }
@@ -108,12 +116,13 @@ var common = {
 			html += '</div>';
 			
 			$("#footer").after(html);
-			
+			$("body").addClass("disable");
 			$(document).on("click","#popupConfirmBtn",function(){
 				if(confirmFn != null){
 					confirmFn();
 				}
 				$(".dim-layer").remove();
+				$("body").removeClass("disable");
 			});
 		},
 		cookieCheck : function(){
@@ -148,6 +157,7 @@ var common = {
 		  return result;
 		},
 		share : {
+			url : "https://www.menupick.shop",
 			init : function(){
 				if($("#shareBtn").length != 0){
 					this.kakao();
@@ -170,14 +180,14 @@ var common = {
 			    		description: '#아무거나 #결정장애 #뭐먹지',
 			    		imageUrl: 'https://www.menupick.shop/images/kakaoMain.png',
 			    		link: {
-			    			mobileWebUrl: 'https://www.menupick.shop'
+			    			mobileWebUrl: common.share.url
 			    		}
 			    	},
 			    	buttons: [
 				        {
 				        	title: '웹으로 보기',
 				        	link: {
-				        		mobileWebUrl: 'https://developers.kakao.com'
+				        		mobileWebUrl: common.share.url
 				        	}
 				        }
 			        ]
@@ -185,7 +195,7 @@ var common = {
 			},
 			facebook : function(){
 				$("#facebookBtn").on("click",function(){
-		    		var url = 'https://www.menupick.shop/';
+		    		var url = common.share.url;
 		    		var encodeUrl = encodeURIComponent(url);
 		        	var facebook = 'https://www.facebook.com/sharer/sharer.php?u=';
 		        	var link = facebook + encodeUrl;
@@ -194,7 +204,7 @@ var common = {
 			},
 			naver : function(){
 				$("#naverBtn").on("click",function(){
-		    		var url = 'https://www.menupick.shop/';
+		    		var url = common.share.url;
 		    		var encodeUrl = encodeURIComponent(url);
 		        	var naver = 'https://share.naver.com/web/shareView.nhn?url=';
 		        	var link = naver + encodeUrl+'&title=아무거나';
@@ -203,7 +213,7 @@ var common = {
 			},
 			twitter : function(){
 				$("#twitterBtn").on("click",function(){
-		    		var url = 'https://www.menupick.shop/';
+		    		var url = common.share.url;
 		    		var encodeUrl = encodeURIComponent(url);
 		        	var twitter = 'https://twitter.com/intent/tweet?title=아무거나&url=';
 		        	var link = twitter + encodeUrl;

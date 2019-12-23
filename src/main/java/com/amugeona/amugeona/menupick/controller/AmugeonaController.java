@@ -126,28 +126,6 @@ public class AmugeonaController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/amu/mapList.do")
-	public ModelAndView mapList(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		logger.info("==== /amu/mapList.do =====");
-		logger.info("==== 카카오 맵 음식점 찾기 화면 =====");
-		ModelAndView mv = new ModelAndView("/amugeona/mapList");
-		
-		String foodNm = request.getParameter("foodNm"); // foodCd
-		String stepData = request.getParameter("stepData"); // stepData
-		String typeData = request.getParameter("typeData"); // stepData
-		if(Util.isBlank(foodNm)) {
-			mv = new ModelAndView("redirect:/main.do");
-			return mv;
-		}
-		mv.addObject("foodNm", foodNm);
-		mv.addObject("stepData", stepData);
-		mv.addObject("typeData", typeData);
-		
-		setFoodLog(request,response,foodNm,"LG004");
-		
-		return mv;
-	}
-	
 	@RequestMapping(value = "/amu/randomWorldCup.do")
 	public ModelAndView randomWorldCup(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("==== /amu/randomWorldCup.do =====");
@@ -184,6 +162,36 @@ public class AmugeonaController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/amu/mapList.do")
+	public ModelAndView mapList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("==== /amu/mapList.do =====");
+		logger.info("==== 카카오 맵 음식점 찾기 화면 =====");
+		ModelAndView mv = new ModelAndView("/amugeona/mapList");
+		
+		String foodCd = request.getParameter("foodCd"); // foodCd
+		Map<String, Object> parameterMap = new HashMap<String, Object>();
+		parameterMap.put("foodCd", foodCd);
+		
+		Map<String, Object> resultMap = amugeonaService.selectFoodNm(parameterMap);
+		String foodNm = (String)resultMap.get("CODE_NAME"); // foodCd
+		String stepData = request.getParameter("stepData"); // stepData
+		String typeData = request.getParameter("typeData"); // stepData
+		if(Util.isBlank(foodNm)) {
+			mv = new ModelAndView("redirect:/main.do");
+			return mv;
+		}
+		mv.addObject("foodNm", foodNm);
+		mv.addObject("foodCd", foodCd);
+		mv.addObject("stepData", stepData);
+		mv.addObject("typeData", typeData);
+		
+		setFoodLog(request,response,foodNm,"LG004");
+		
+		return mv;
+	}
+	
+	
+	
 	@RequestMapping(value = "/test.do")
 	public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("==== worldCup =====");
@@ -209,15 +217,6 @@ public class AmugeonaController {
 		
 		
 		return mv;
-	}
-	
-	@RequestMapping(value = "/capture.do", method = RequestMethod.POST)
-	public void slip(HttpServletRequest request, HttpServletResponse response) throws IOException {
-	    String data = request.getParameter("img_val");
-		data = data.replaceAll("data:image/png;base64,", "");
-		byte[] file = Base64.decodeBase64(data.getBytes());
-		saveFile(file,"testCookie01");
-		ByteArrayInputStream is = new ByteArrayInputStream(file);
 	}
 
 	@RequestMapping(value = "/amu/ajaxTypeList.do", method = RequestMethod.POST)
@@ -270,28 +269,6 @@ public class AmugeonaController {
 		
 		return resultMap; // 화면으로 던져준다!!
 		 
-	}
-	
-	private String saveFile(byte[] binary,String cookieId){
-	    // 파일 이름 변경
-	    UUID uuid = UUID.randomUUID();
-	    String saveName = uuid + "_" + cookieId+".jpg";
-
-	    logger.info("saveName: {}",saveName);
-
-	    try {
-	    	FileOutputStream fos = null;
-			fos = new FileOutputStream("C:\\00_dev\\workspace\\amugeona\\src\\main\\webapp\\images\\capter\\"+saveName);
-			fos.write(binary, 0, binary.length);
-		    fos.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			saveName = null;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			saveName = null;
-		}
-	    return saveName;
 	}
 	
 	public boolean setFoodLog(HttpServletRequest request, HttpServletResponse response, String foodNm, String type) {

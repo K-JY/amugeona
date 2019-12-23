@@ -34,4 +34,9 @@ public class AmugeonaDAO extends AbstractDAO{
 	public List<Map<String, Object>> selectRandomWorldCup() throws Exception {
 		return (List<Map<String, Object>>) selectList("amugeona.selectRandomWorldCup");
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectFoodNm(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectOne("amugeona.selectFoodNm", map);
+	}
 }

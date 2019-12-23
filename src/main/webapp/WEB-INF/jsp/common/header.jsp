@@ -4,3 +4,4 @@
 	<div style="width:70%; display:inline-block; font-size:30px;" id="mainTitle">아무거나</div>
 	<label style="width:10%;float: right;margin-top: -6px;" id="shareBtn"> <img src="/images/common/shareBtn.png" style="width:30px;"/></label>
 </section>
+<input type="hidden" id="device" value="${device}"/>

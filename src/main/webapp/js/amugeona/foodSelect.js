@@ -1,6 +1,7 @@
 init.ready = function(){
 	food.click();
 	food.init();
+	common.share.url = "https://www.menupick.shop/amu/foodSelect.do?typeData="+$("#typeData").val()+"&stepData="+$("#stepData").val();
 	common.backUrl = function(){
 		location.href = "/amu/typeSelect.do";
 	}
@@ -20,8 +21,8 @@ var food = {
 				return;
 			}
 			
-			var foodValue = $(".foodListBtn.on input[name=foodNameValue]").val();
-			$("#foodNm").val(foodValue);
+			var foodValue = $(".foodListBtn.on input[name=foodValue]").val();
+			$("#foodCd").val(foodValue);
 			$("#frm").attr("action","/amu/mapList.do");
 			$("#frm").submit();
 		});

@@ -5,8 +5,12 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.mobile.device.Device;
+import org.springframework.mobile.device.DeviceUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,8 +36,10 @@ public class MainController {
 	}
 	
 	@RequestMapping(value = "/main.do")
-	public ModelAndView main(Map<String, Object> commandMap) throws Exception {
+	public ModelAndView main(HttpServletRequest request, Map<String, Object> commandMap) throws Exception {
 		logger.info("==== main =====");
+		Device device = DeviceUtils.getCurrentDevice(request);
+		logger.info("mobile info : "+device.isMobile());
 		ModelAndView mv = new ModelAndView("main");
 		return mv;
 	}

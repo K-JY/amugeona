@@ -42,4 +42,9 @@ public class AmugeonaServiceImpl implements AmugeonaService{
 		return amugeonaDAO.selectRandomWorldCup();
 	}
 
+	@Override
+	public Map<String, Object> selectFoodNm(Map<String, Object> commandMap) throws Exception {
+		return amugeonaDAO.selectFoodNm(commandMap);
+	}
+
 }

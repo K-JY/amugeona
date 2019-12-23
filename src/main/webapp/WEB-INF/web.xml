@@ -57,6 +57,17 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
+
+	<filter>
+		<filter-name>deviceResolverRequestFilter</filter-name>
+		<filter-class>org.springframework.mobile.device.DeviceResolverRequestFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>deviceResolverRequestFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+
 	<resource-ref>
 		<description></description>
 		<res-ref-name>jdbc/MySQLDS</res-ref-name>
@@ -65,18 +76,18 @@
 	</resource-ref>
 
 	<error-page>
-	    <exception-type>java.lang.Throwable</exception-type>
-	    <location>/WEB-INF/jsp/error/error.jsp</location>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/WEB-INF/jsp/error/error.jsp</location>
 	</error-page>
-	
+
 	<error-page>
-	    <error-code>404</error-code>
-	    <location>/WEB-INF/jsp/error/error404.jsp</location>
+		<error-code>404</error-code>
+		<location>/WEB-INF/jsp/error/error404.jsp</location>
 	</error-page>
-	
+
 	<error-page>
-	    <error-code>500</error-code>
-	    <location>/WEB-INF/jsp/error/error500.jsp</location>
+		<error-code>500</error-code>
+		<location>/WEB-INF/jsp/error/error500.jsp</location>
 	</error-page>
 
 </web-app>

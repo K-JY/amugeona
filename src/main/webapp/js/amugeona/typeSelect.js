@@ -1,4 +1,5 @@
 init.ready = function(){
+	common.share.url="https://www.menupick.shop/amu/typeSelect.do";
 	amugeona.btnEvent();
 };
 
