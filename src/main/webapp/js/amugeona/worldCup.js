@@ -129,7 +129,7 @@ var worldCup = {
 	completeFood : function(){
 		var completeFood = worldCup.food[0];
 		var html = htmlTemplete.complete(completeFood.foodName, completeFood.foodImg);
-		$("#foodNm").val(completeFood.foodName);
+		$("#foodCd").val(completeFood.foodCode);
 		$("#footer").after(html);
 		common.ajax('/amu/ajaxSelectFoodLog.do',{foodNm:$("#foodNm").val()});
 		boom.start();
@@ -198,7 +198,7 @@ var htmlTemplete = {
 	},
 	complete : function(foodName, foodImg){
 		var html = '';
-		html += '<div class="dim-layer" style="display: block;">';
+		html += '<div class="dim-layer worldCupLayer" style="display: block;">';
 		html += '<div class="dimBg"></div>';
 		html += '<div id="layer2" class="pop-layer" style="padding: 0px 20px;">';
 		html += '<div class="pop-container" style="margin-bottom: 30px;">';

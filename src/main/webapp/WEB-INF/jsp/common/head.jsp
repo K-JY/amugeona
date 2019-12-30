@@ -13,6 +13,7 @@
 <meta property="og:image" content="https://www.menupick.shop/images/mainImg.PNG">
 <meta property="og:url" content="https://www.menupick.shop">
 
+<link rel="image_src" href="https://www.menupick.shop/images/mainImg.PNG" />
 <link rel="stylesheet" href="/css/main.css?201912102013" />
 <link rel="stylesheet" href="/css/map.css?201912102013" />
 <link rel="stylesheet" href="/css/swiper.min.css">

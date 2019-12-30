@@ -26,7 +26,7 @@ var main = {
 			$("body").addClass("disable");
 		});
 		
-		$(document).on("click",".randomPop",function(){
+		$(document).on("click",".randomPop > .dimBg",function(){
 			$(".randomPop").effect("fold",500,function(){
 				$(".randomPop").remove();
 			});

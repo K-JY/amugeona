@@ -17,6 +17,31 @@ var init = {
 		}
 		this.btnEvent();
 		
+		document.addEventListener("backbutton", function(){
+			if($(".dim-layer").length() != 0){
+	        	 if($("#shareView").length() != 0){
+	        		 $("#shareView").remove();
+	        	 }else if($(".dim-layer").hasClass("worldCupLayer")){
+	        		 if(common.backUrl == null){
+						 location.href = "/main.do";
+						 return;
+					 }
+					 
+					 common.backUrl();
+	        	 }else{
+	        		 $(".dim-layer").remove();
+	        	 }
+	         }else{
+	        	 if(common.backUrl == null){
+					 location.href = "/main.do";
+					 return;
+				 }
+				 
+				 common.backUrl();
+	         }
+		}, false);
+	
+		
 	},
 	ready : function(){
 		

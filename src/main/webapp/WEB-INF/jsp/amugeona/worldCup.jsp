@@ -10,7 +10,7 @@
 		<jsp:include page="/WEB-INF/jsp/common/header.jsp" />
 		<!-- Banner -->
 		<form id="frm" method="POST">
-			<input type="hidden" id="foodNm" name="foodNm" value=""/>
+			<input type="hidden" id="foodCd" name="foodCd" value=""/>
 			<input type="hidden" id="typeData" name="typeData" value="${typeData}"/>
 			<input type="hidden" id="stepData" name="stepData" value="${stepData}"/>
 		</form>
