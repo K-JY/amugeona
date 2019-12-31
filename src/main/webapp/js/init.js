@@ -3,7 +3,7 @@ var init = {
 		if (document.location.protocol == 'http:' || (window.location.host != 'www.menupick.shop' && window.location.host != 'localhost')) {
 			document.location.href = 'https://www.menupick.shop' + window.location.pathname
 	    }
-
+		//this.chromOpen();
 		$(document).snowfall({
 			minSize : 5,
 			maxSize : 10,
@@ -16,31 +16,19 @@ var init = {
 			common.alertPop("최적화 안내","해당 웹사이트는 모바일에 최적화 되어있습니다.");
 		}
 		this.btnEvent();
-		
-		document.addEventListener("backbutton", function(){
-			if($(".dim-layer").length() != 0){
-	        	 if($("#shareView").length() != 0){
-	        		 $("#shareView").remove();
-	        	 }else if($(".dim-layer").hasClass("worldCupLayer")){
-	        		 if(common.backUrl == null){
-						 location.href = "/main.do";
-						 return;
-					 }
-					 
-					 common.backUrl();
-	        	 }else{
-	        		 $(".dim-layer").remove();
-	        	 }
-	         }else{
-	        	 if(common.backUrl == null){
-					 location.href = "/main.do";
-					 return;
-				 }
-				 
-				 common.backUrl();
-	         }
-		}, false);
-	
+
+/*		window.onbeforeunload = function(){
+
+			alert("back");
+	    	this.backEvent();
+
+		};*/
+
+/*		$(window).bind("pageshow", function(event) {
+		    if (event.originalEvent.persisted) {
+		    	
+		    }
+		});*/
 		
 	},
 	ready : function(){
@@ -48,6 +36,53 @@ var init = {
 	},
 	after : function(){
 		common.share.init();
+	},
+	backEvent : function(){
+		if($(".dim-layer").css("display") != "none"){
+       	 if($("#shareView").css("display") != "none"){
+       		 $("#shareView").remove();
+       	 }else if($(".dim-layer").hasClass("worldCupLayer")){
+       		 if(common.backUrl == null){
+					 location.href = "/main.do";
+					 return;
+				 }
+				 
+				 common.backUrl();
+       	 }else{
+       		 $(".dim-layer").remove();
+       	 }
+        }else{
+       	 if(common.backUrl == null){
+				 location.href = "/main.do";
+				 return;
+			 }
+			 
+			 common.backUrl();
+        }
+	},
+	chromOpen : function(){
+		var currentOS = "else";
+	    var mobile = (/iphone|ipad|ipod|android/i.test(navigator.userAgent.toLowerCase()));
+	    if (mobile) {
+	        var userAgent = navigator.userAgent.toLowerCase();
+	        if (userAgent.search("android") > -1){
+	        	if(userAgent.search("chrom") < 0){
+	        		currentOS = "android";
+	        	}
+	        }
+	        else if ((userAgent.search("iphone") > -1) || (userAgent.search("ipod") > -1) || (userAgent.search("ipad") > -1))
+	            currentOS = "ios";
+	        else
+	            currentOS = "else";
+	    }
+
+	    if(currentOS == "android"){
+	        // Android
+	        window.open("intent://www.menupick.shop#Intent;scheme=https;package=com.android.chrome;end");
+	    }/*else if(currentOS == "ios"){
+	        // IOS 
+	        window.open("googlechrome:////www.menupick.shop");
+	    }*/
 	},
 	btnEvent : function(){
 		// 로고 선택시 메인화면

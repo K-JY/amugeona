@@ -85,14 +85,18 @@
 				})
 		      
 		    }, function(error) {
-		      console.error(error);
+		    	common.alertPop('','위치정보 권한을 해제해 주세요',function(){
+					  common.backUrl();
+				  });
 		    }, {
 		      enableHighAccuracy: false,
 		      maximumAge: 0,
 		      timeout: Infinity
 		    });
 		  } else {
-		    alert('GPS를 지원하지 않습니다');
+			  common.alertPop('','위치정보 권한을 해제해 주세요',function(){
+				  common.backUrl();
+			  });
 		  }
 	}
 	// 키워드 검색을 요청하는 함수입니다
@@ -101,7 +105,7 @@
 	    var keyword = document.getElementById('keyword').value;
 
 	    if (!keyword.replace(/^\s+|\s+$/g, '')) {
-	        alert('키워드를 입력해주세요!');
+	    	common.alertPop('','키워드를 입력해주세요!');
 	        return false;
 	    }
 
