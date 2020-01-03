@@ -11,11 +11,11 @@
 <meta property="og:type" content="website"> 
 <meta property="og:title" content="아무거나를 정해드립니다.">
 <meta property="og:description" content="무엇을 먹을지 결정못하는 결정장애를 위한, 아무거나를 정해주는 홈페이지 입니다.">
-<meta property="og:image" content="https://app.adriel.ai/static/assets/og-logo-adriel.png?new">
+<meta property="og:image" content="https://www.menupick.shop/images/mainImg.PNG">
 
 
 <link rel="image_src" href="https://www.menupick.shop/images/mainImg.PNG" />
-<link rel="stylesheet" href="/css/main.css?201912102013" />
+<link rel="stylesheet" href="/css/main.css?202001031401" />
 <link rel="stylesheet" href="/css/map.css?201912102013" />
 <link rel="stylesheet" href="/css/swiper.min.css">
 <link rel="stylesheet" href="/css/pop.css">
