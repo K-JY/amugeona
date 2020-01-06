@@ -26,6 +26,11 @@ public class AmugeonaDAO extends AbstractDAO{
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectFoodMoreList(Map<String, Object> map) throws Exception {
+		return (List<Map<String, Object>>) selectList("amugeona.selectFoodMoreList", map);
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectFoodWorldCup(Map<String, Object> map) throws Exception {
 		return (List<Map<String, Object>>) selectList("amugeona.selectFoodWorldCup", map);
 	}

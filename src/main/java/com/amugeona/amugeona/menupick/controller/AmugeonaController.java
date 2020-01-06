@@ -90,7 +90,15 @@ public class AmugeonaController {
 		logService.InsertTypeLog(typeMap,Util.cookieCheck(request, response)); // 타입 로그
 		
 		List<Map<String, Object>> list = amugeonaService.selectFoodList(typeMap);
+		if(list.size() <= 0 ) {
+			typeMap.put("foodList", null);
+		}else {
+			typeMap.put("foodList", list);
+		}
+		
+		List<Map<String, Object>> moreList = amugeonaService.selectFoodMoreList(typeMap);
 		mv.addObject("list", list);
+		mv.addObject("moreList", moreList);
 		mv.addObject("typeData", typeData);
 		mv.addObject("stepData", stepData);
 

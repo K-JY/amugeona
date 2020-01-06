@@ -9,12 +9,15 @@ init.ready = function(){
 
 var food = {
 	click : function(){
-		$("#worldCupBtn").on("click",function(){
+		$(document).on("click","#worldCupBtn",function(){
+			if($("#moreFlag").val() == "Y"){
+				$("#data").val($("#moreData").val())
+			}
 			$("#frm").attr("action","/amu/worldCup.do");
 			$("#frm").submit();
 		});
 		
-		$("#mapBtn").on("click",function(){
+		$(document).on("click","#mapBtn",function(){
 			var foodList = $(".foodListBtn.on");
 			if(foodList.length == 0){
 				common.alertPop("","메뉴를 선택해 주세요.");
@@ -27,18 +30,52 @@ var food = {
 			$("#frm").submit();
 		});
 		
-		$(".foodListBtn").on("click",function(){
+		$(document).on("click",".foodListBtn",function(){
 			$(".foodListBtn").removeClass("on");
 			$(this).addClass("on");
 		});
 		
-		$("#randomWorldCupBtn").on("click",function(){
+		$(document).on("click","#randomWorldCupBtn",function(){
 			location.href="/amu/randomWorldCup.do";
 		});
 		
-		$("#mainBtn").on("click",function(){
+		$(document).on("click","#mainBtn",function(){
 			location.href="/main.do";
 		});
+		
+		$(document).on("click",".moreFoodBtn", function(){
+			$(".moreFoodBtn").closest(".swiper-slide").effect("blind",function(){
+				$(".moreFoodBtn").closest(".swiper-slide").remove();
+				$(".moreFoodList").show();
+				
+				var swiper = new Swiper('.swiper-container', {
+			        paginationClickable: true,
+			        nextButton: '.swiper-button-next',
+			        prevButton: '.swiper-button-prev',
+			        spaceBetween: 30,
+			        slidesPerView: 1.5,
+			        centeredSlides: true,
+			        initialSlide: $("#listLength").val()
+			    });
+				
+				$(".moreFoodList").hide();
+				$(".moreFoodList").show("blind");
+				
+				var length = $("#moreListLength").val()*1 + $("#listLength").val()*1;
+				
+				$("#typeTitle").html("결과 "+length+"개");
+				$(".leftBtn").remove();
+				$(".rightBtn").remove();
+				var html = '<a href="#" class="button scrolly leftBtn" id="mapBtn">근처맛집찾기</a>'
+				html += '<a href="#" class="button scrolly rightBtn" id="worldCupBtn">아무거나 월드컵</a>';
+					
+				$("#type-contents").after(html);
+				
+				$("#moreFlag").val("Y");
+				
+			});
+			
+		})
 	},
 	init : function(){
 		var swiper = new Swiper('.swiper-container', {
