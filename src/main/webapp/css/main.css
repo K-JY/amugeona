@@ -2488,7 +2488,7 @@ br.clear {
     margin-bottom: 0em;
 }
 
-#type-contents{
+.type-contents{
 	height: 350px;
     overflow: scroll;
 }

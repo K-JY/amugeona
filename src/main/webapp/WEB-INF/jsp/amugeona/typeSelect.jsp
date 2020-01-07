@@ -16,7 +16,7 @@
 				<input type="hidden" name="stepData" id="stepData" />
 			</form>
 			<p id="typeTitle">주메뉴</p>
-			<div id="type-contents">
+			<div class="type-contents">
 				<c:forEach var="list" items="${list}" varStatus="status">
 					<label class="button style2 scrolly typeBtn" name="typeBtn" for="${list.PARENT_CATEGORY}${status.index}">${list.CODE_NAME}</label>
 					<input type="radio" class="hidden" name="typeRadioBox" id="${list.PARENT_CATEGORY}${status.index}" value="${list.TYPE_CD}|${list.TYPE_CATEGORY}|${list.GROUP_ID}">

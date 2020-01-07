@@ -99,7 +99,7 @@ var amugeona = {
 	typeSuccessFn : function(data){ // type 데이터 전송 완료 후 새로운 type 데이터 받음
 		var list = data.list;
 		
-		$('#type-contents').empty();
+		$('.type-contents').empty();
 		$("#btn-list").empty();
 
 		var html1 = '';
@@ -113,9 +113,9 @@ var amugeona = {
 			html2 += html.preBtn();
 		}
 		$("#typeTitle").html(list[0].TITLE_NAME);
-		$('#type-contents').append(html1);
-		$("#type-contents").hide();
-		$("#type-contents").show('drop',{},500);
+		$('.type-contents').append(html1);
+		$(".type-contents").hide();
+		$(".type-contents").show('drop',{},500);
 		$("#btn-list").append(html2);
 	},
 	typeErrorFn : function(data){

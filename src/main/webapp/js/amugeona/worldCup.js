@@ -93,8 +93,8 @@ var worldCup = {
 		html += htmlTemplete.food(worldCup.food[idx1].foodCode, worldCup.food[idx1].foodName, worldCup.food[idx1].foodImg, idx1);
 		html += htmlTemplete.food(worldCup.food[idx2].foodCode, worldCup.food[idx2].foodName, worldCup.food[idx2].foodImg, idx2);
 		
-		$('#type-contents').empty();
-		$('#type-contents').append(html);
+		$('.type-contents').empty();
+		$('.type-contents').append(html);
 		
 		$(".foodBtn").eq(0).animate({
 			  left:0

@@ -14,7 +14,7 @@
 		</form>
 		<div id="middle">
     		<p id="typeTitle">${foodNm} 주변 음식점</p>
-			<div class="swiper-container" id="type-contents">
+			<div class="swiper-container type-contents">
 				<div class="swiper-wrapper">
 				<c:forEach var="list" items="${list}" varStatus="status">
 					<div class="swiper-slide" style="background: none;">

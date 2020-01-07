@@ -10,9 +10,6 @@ init.ready = function(){
 var food = {
 	click : function(){
 		$(document).on("click","#worldCupBtn",function(){
-			if($("#moreFlag").val() == "Y"){
-				$("#data").val($("#moreData").val())
-			}
 			$("#frm").attr("action","/amu/worldCup.do");
 			$("#frm").submit();
 		});
@@ -45,8 +42,9 @@ var food = {
 		
 		$(document).on("click",".moreFoodBtn", function(){
 			$(".moreFoodBtn").closest(".swiper-slide").effect("blind",function(){
-				$(".moreFoodBtn").closest(".swiper-slide").remove();
-				$(".moreFoodList").show();
+				$(".type-contents").remove();
+				$(".moreFoodListContainer").addClass("swiper-container").addClass("type-contents");
+				$(".moreFoodListContainer").show();
 				
 				var swiper = new Swiper('.swiper-container', {
 			        paginationClickable: true,
@@ -55,23 +53,22 @@ var food = {
 			        spaceBetween: 30,
 			        slidesPerView: 1.5,
 			        centeredSlides: true,
-			        initialSlide: $("#listLength").val()
+			        initialSlide: $("#listLength").val(),
+			        direction : 'vertical'
 			    });
-				
-				$(".moreFoodList").hide();
-				$(".moreFoodList").show("blind");
 				
 				var length = $("#moreListLength").val()*1 + $("#listLength").val()*1;
 				
 				$("#typeTitle").html("결과 "+length+"개");
 				$(".leftBtn").remove();
 				$(".rightBtn").remove();
+				$(".centerBtn").remove();
 				var html = '<a href="#" class="button scrolly leftBtn" id="mapBtn">근처맛집찾기</a>'
 				html += '<a href="#" class="button scrolly rightBtn" id="worldCupBtn">아무거나 월드컵</a>';
 					
-				$("#type-contents").after(html);
+				$(".type-contents").after(html);
 				
-				$("#moreFlag").val("Y");
+				$("#data").val($("#moreData").val());
 				
 			});
 			
@@ -82,9 +79,10 @@ var food = {
 	        paginationClickable: true,
 	        nextButton: '.swiper-button-next',
 	        prevButton: '.swiper-button-prev',
-	        spaceBetween: 30,
-	        slidesPerView: 1.5,
-	        centeredSlides: true
+	        spaceBetween: 100,
+	        slidesPerView: 1,
+	        centeredSlides: true,
+	        direction : 'vertical'
 	    });
 	}
 }

@@ -22,15 +22,17 @@
 		<div id="middle">
     		<p id="typeTitle">결과 ${fn:length(list)}개</p>
     		<c:if test="${fn:length(list) ne 0}">
-				<div class="swiper-container" id="type-contents">
+				<div class="swiper-container type-contents" style="height:350px;">
 					<div class="swiper-wrapper">
 					<c:forEach var="list" items="${list}" varStatus="status">
 						<div class="swiper-slide" style="background: none;">
-							<label class="button style2 scrolly foodListBtn" name="foodBtn" for="foodValue1" style="right: 0px;">
-								<input type="hidden" name="foodValue" id="foodValue${status.index}" value="${list.FOOD_CD}">${list.CODE_NAME}<br>
+							<div class="button style2 scrolly foodListBtn" name="foodBtn" for="foodValue1" style="right: 0px;">
+								<input type="hidden" name="foodValue" id="foodValue${status.index}" value="${list.FOOD_CD}">
 								<input type="hidden" name="foodNameValue" id="foodNameValue${status.index}" value="${list.CODE_NAME}">
-								<img src="${list.IMG}" onerror="this.src='/images/common/no_image.jpg'" class="foodImg2">
-							</label>
+								<div style="display:inline-block;width:30%;"><img src="${list.IMG}" onerror="this.src='/images/common/no_image.jpg'" class="foodImg2"></div>
+								<div style="display:inline-block;width:70%;">${list.CODE_NAME}</div>
+								
+							</div>
 						</div>
 					</c:forEach>
 					<div class="swiper-slide" style="background: none;">
@@ -66,14 +68,14 @@
 			    
 			</c:if>
 			<c:if test="${fn:length(list) eq 0}">
-				<div id="type-contents">
+				<div class="type-contents">
 					<div class="swiper-slide" style="background: none;">
 						<label class="button style2 scrolly foodListBtn moreFoodBtn"  style="right: 0px;height:150px">
 							입맛이 까다로우시네요.<br>다시 한번 시도해 보세요.<br><br> 더 많은 메뉴 보기 >
 						</label>
 						
 					</div>
-					<div class="swiper-container" id="type-contents">
+					<div class="swiper-container type-contents">
 						<div class="swiper-wrapper">
 							<c:forEach var="moreList" items="${moreList}" varStatus="status">
 								<div class="swiper-slide moreFoodList" style="background: none;display:none;">
@@ -90,7 +92,35 @@
 				<a href="#" class="button scrolly leftBtn" id="mainBtn">처음으로</a>
 			    <a href="#" class="button scrolly rightBtn" id="randomWorldCupBtn">랜덤 월드컵</a>
 			</c:if>
-			
+			<div class="moreFoodListContainer" style="height:350px; display:none;">
+				<div class="swiper-wrapper">
+				<c:forEach var="list" items="${list}" varStatus="status">
+					<div class="swiper-slide" style="background: none;">
+						<label class="button style2 scrolly foodListBtn" name="foodBtn" for="foodValue1" style="right: 0px;">
+							<input type="hidden" name="foodValue" id="foodValue${status.index}" value="${list.FOOD_CD}">${list.CODE_NAME}<br>
+							<input type="hidden" name="foodNameValue" id="foodNameValue${status.index}" value="${list.CODE_NAME}">
+							<img src="${list.IMG}" onerror="this.src='/images/common/no_image.jpg'" class="foodImg2">
+						</label>
+					</div>
+				</c:forEach>
+				<c:forEach var="moreList" items="${moreList}" varStatus="status">
+					<div class="swiper-slide moreFoodList" style="background: none;">
+						<label class="button style2 scrolly foodListBtn" name="foodBtn" for="foodValue1" style="right: 0px;">
+							<input type="hidden" name="foodValue" id="foodValue${status.index}" value="${moreList.FOOD_CD}">${moreList.CODE_NAME}<br>
+							<input type="hidden" name="foodNameValue" id="foodNameValue${status.index}" value="${moreList.CODE_NAME}">
+							<img src="${moreList.IMG}" onerror="this.src='/images/common/no_image.jpg'" class="foodImg2">
+						</label>
+					</div>
+				</c:forEach>
+				</div>
+				<!-- Add Pagination -->
+				<c:if test="${fn:length(list) ne 1}">
+		        <div class="swiper-pagination"></div>
+		        <!-- Add Arrows -->
+		        <div class="swiper-button-next"></div>
+		        <div class="swiper-button-prev"></div>
+		        </c:if>
+			</div>
 		</div>
 		
 		<jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
