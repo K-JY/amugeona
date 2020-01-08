@@ -35,10 +35,12 @@ var main = {
 		});
 		
 		$(document).on("click","#menuBtn",function(){
+			common.loading.start();
 			location.href="/amu/typeSelect.do";
 		});
 		
 		$(document).on("click","#randomMenuGoBtn",function(){
+			common.loading.start();
 			$("#frm").submit();
 		});
 		

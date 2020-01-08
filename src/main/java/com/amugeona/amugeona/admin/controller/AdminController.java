@@ -290,7 +290,7 @@ public class AdminController {
 	    	if(!Util.isBlank(value)) {
 	    		Map<String, Object> foodMapping = new HashMap<String, Object>();
 		    	foodMapping.put("foodId", foodCd);
-		    	foodMapping.put("foodType", value.split("\\|")[0]);
+		    	foodMapping.put("foodType", value.split("_")[0]);
 		    	adminService.insertFoodMap(foodMapping);
 	    	}
 	    	 

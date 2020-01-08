@@ -6,7 +6,7 @@
 		<jsp:include page="/WEB-INF/jsp/common/head.jsp" />
 	</head>
 	<body class="is-preload">
-		<script type="text/javascript" src="/js/amugeona/worldCup.js"></script>
+		<script type="text/javascript" src="/js/amugeona/worldCup.js?ver=1.1"></script>
 		<jsp:include page="/WEB-INF/jsp/common/header.jsp" />
 		<!-- Banner -->
 		<form id="frm" method="POST">

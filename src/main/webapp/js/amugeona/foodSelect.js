@@ -3,6 +3,7 @@ init.ready = function(){
 	food.init();
 	common.share.url = "https://www.menupick.shop/amu/foodSelect.do?typeData="+$("#typeData").val()+"&stepData="+$("#stepData").val();
 	common.backUrl = function(){
+		common.loading.start();
 		location.href = "/amu/typeSelect.do";
 	}
 }
@@ -11,6 +12,7 @@ var food = {
 	click : function(){
 		$(document).on("click","#worldCupBtn",function(){
 			$("#frm").attr("action","/amu/worldCup.do");
+			common.loading.start();
 			$("#frm").submit();
 		});
 		
@@ -24,6 +26,7 @@ var food = {
 			var foodValue = $(".foodListBtn.on input[name=foodValue]").val();
 			$("#foodCd").val(foodValue);
 			$("#frm").attr("action","/amu/mapList.do");
+			common.loading.start();
 			$("#frm").submit();
 		});
 		
@@ -47,14 +50,11 @@ var food = {
 				$(".moreFoodListContainer").show();
 				
 				var swiper = new Swiper('.swiper-container', {
-			        paginationClickable: true,
-			        nextButton: '.swiper-button-next',
-			        prevButton: '.swiper-button-prev',
-			        spaceBetween: 30,
-			        slidesPerView: 1.5,
+					spaceBetween: 2,
+			        slidesPerView: 3.1,
 			        centeredSlides: true,
-			        initialSlide: $("#listLength").val(),
-			        direction : 'vertical'
+			        direction : 'vertical',
+			        initialSlide: $("#listLength").val()
 			    });
 				
 				var length = $("#moreListLength").val()*1 + $("#listLength").val()*1;
@@ -63,8 +63,10 @@ var food = {
 				$(".leftBtn").remove();
 				$(".rightBtn").remove();
 				$(".centerBtn").remove();
-				var html = '<a href="#" class="button scrolly leftBtn" id="mapBtn">근처맛집찾기</a>'
+				var html = '<div style="margin-top:10px;" class="btnDiv">'; 
+				html += '<a href="#" class="button scrolly leftBtn" id="mapBtn">근처맛집찾기</a>';
 				html += '<a href="#" class="button scrolly rightBtn" id="worldCupBtn">아무거나 월드컵</a>';
+				html += '</div>';
 					
 				$(".type-contents").after(html);
 				
@@ -76,13 +78,11 @@ var food = {
 	},
 	init : function(){
 		var swiper = new Swiper('.swiper-container', {
-	        paginationClickable: true,
-	        nextButton: '.swiper-button-next',
-	        prevButton: '.swiper-button-prev',
-	        spaceBetween: 100,
-	        slidesPerView: 1,
+	        spaceBetween: 2,
+	        slidesPerView: 3.1,
 	        centeredSlides: true,
-	        direction : 'vertical'
+	        direction : 'vertical',
+	        initialSlide: 0
 	    });
 	}
 }

@@ -5,7 +5,7 @@
 		<jsp:include page="/WEB-INF/jsp/common/head.jsp"/>
 	</head>
 	<body class="is-preload">
-		<script type="text/javascript" src="/js/main.js"></script>
+		<script type="text/javascript" src="/js/main.js?ver=1.1"></script>
 		<jsp:include page="/WEB-INF/jsp/common/header.jsp"/>
 		<!-- Banner -->
 		<section id="middle">

@@ -79,8 +79,8 @@ public class AmugeonaController {
 			stepData = "";
 		}
 		
-		String[] typeDataList = typeData.split("\\|");
-		String[] stepDataList = stepData.split("\\|");
+		String[] typeDataList = typeData.split("_");
+		String[] stepDataList = stepData.split("_");
 		
 		Map<String, Object> typeMap = new HashMap<String, Object>();
 		for(int i = 0;i<typeDataList.length;i++) {
@@ -112,7 +112,7 @@ public class AmugeonaController {
 		
 		ModelAndView mv = new ModelAndView("/amugeona/worldCup");
 		String data = request.getParameter("data");
-		String[] value = request.getParameter("data").split("\\|");
+		String[] value = request.getParameter("data").split("_");
 		
 		Map<String,Object> paramMap = new HashMap<String,Object>();
 		List<String> list = new ArrayList<String>();

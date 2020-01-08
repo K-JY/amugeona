@@ -117,6 +117,7 @@ var init = {
 var common = {
 		backUrl : null,
 		ajax : function(url, data, successFn, errorFn){
+			common.loading.start();
 			$.ajax({
 				method : 'POST',
 				url : url,
@@ -124,11 +125,13 @@ var common = {
 			    contentType:'application/json',
 				data : JSON.stringify(data),
 				error : function(){
+					common.loading.stop();
 					if(errorFn){
 						errorFn(data);
 					}
 				},
 				success : function(data){
+					common.loading.stop();
 					if(successFn){
 						successFn(data);
 					}
@@ -278,6 +281,20 @@ var common = {
 		        	var link = twitter + encodeUrl;
 		    		window.open(link);
 		    	});
+			}
+		},
+		loading : {
+			start : function(){
+				var html = '';
+				html += '<div class="dim-layer" id="loadingDim" style="display: block;text-align:center;">';
+				html += '<div class="dimBg"></div>';
+				html += '<img src="/images/common/progress.gif" class="loadingImg"/>';
+				html += '</div>';
+				
+				$("#footer").after(html);
+			},
+			stop : function(){
+				$("#loadingDim").remove();
 			}
 		}
 	}

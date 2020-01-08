@@ -17,12 +17,12 @@
 		$("select").on("change",function(){
 			stepId = 'step0'+(($(this).attr("id").replace("step0","")*1)+1);
 			common.ajax('/admin/ajaxFoodSelect.do',{
-				foodCd : $("#"+$(this).attr("id")+" option:selected").val().split("|")[1]
+				foodCd : $("#"+$(this).attr("id")+" option:selected").val().split("_")[1]
 			}, function(data){
 				if(data.result){
 					var html = '<option value="">선택</option>';
 					for(var i = 0;i<data.list.length;i++){
-						var value = data.list[i].TYPE_CD+'|'+data.list[i].TYPE_CATEGORY+'|'+data.list[i].PARENT_CATEGORY;
+						var value = data.list[i].TYPE_CD+'_'+data.list[i].TYPE_CATEGORY+'_'+data.list[i].PARENT_CATEGORY;
 						html += '<option value="'+value+'">'+data.list[i].CODE_NAME+'</option>';
 					}
 					$("#"+stepId).empty();
@@ -38,12 +38,12 @@
 			common.ajax('/admin/foodInsert.do',{
 				foodName : $(this).val(), 
 				list : [
-					{typeCd : $("#step01 option:selected").val().split("|")[0]},
-					{typeCd : $("#step02 option:selected").val().split("|")[0]},
-					{typeCd : $("#step03 option:selected").val().split("|")[0]},
-					{typeCd : $("#step04 option:selected").val().split("|")[0]},
-					{typeCd : $("#step05 option:selected").val().split("|")[0]},
-					{typeCd : $("#step06 option:selected").val().split("|")[0]}
+					{typeCd : $("#step01 option:selected").val().split("_")[0]},
+					{typeCd : $("#step02 option:selected").val().split("_")[0]},
+					{typeCd : $("#step03 option:selected").val().split("_")[0]},
+					{typeCd : $("#step04 option:selected").val().split("_")[0]},
+					{typeCd : $("#step05 option:selected").val().split("_")[0]},
+					{typeCd : $("#step06 option:selected").val().split("_")[0]}
 				]
 			},function(data){
 				if(data.result){
@@ -67,7 +67,7 @@
 				if(data.result){
 					var html = '<option value="">선택</option>';
 					for(var i = 0;i<data.list.length;i++){
-						var value = data.list[i].TYPE_CD+'|'+data.list[i].TYPE_CATEGORY+'|'+data.list[i].PARENT_CATEGORY;
+						var value = data.list[i].TYPE_CD+'_'+data.list[i].TYPE_CATEGORY+'_'+data.list[i].PARENT_CATEGORY;
 						html += '<option value="'+value+'">'+data.list[i].CODE_NAME+'</option>';
 					}
 					$("#"+stepId).empty();

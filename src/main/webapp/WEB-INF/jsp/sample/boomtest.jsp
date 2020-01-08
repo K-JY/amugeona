@@ -18,5 +18,9 @@
 			</footer>
 		</section>
 		<jsp:include page="/WEB-INF/jsp/common/footer.jsp"/>
+		<div class="dim-layer" style="display: block;text-align:center;">
+		<div class="dimBg"></div>
+		<img src="/images/common/progress.gif" class="loadingImg"/>
+		</div>
 	</body>
 </html>

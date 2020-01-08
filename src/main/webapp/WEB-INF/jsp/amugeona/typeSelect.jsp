@@ -6,7 +6,7 @@
 		<jsp:include page="/WEB-INF/jsp/common/head.jsp" />
 	</head>
 	<body class="is-preload">
-		<script type="text/javascript" src="/js/amugeona/typeSelect.js"></script>
+		<script type="text/javascript" src="/js/amugeona/typeSelect.js?ver=1.1"></script>
 		<jsp:include page="/WEB-INF/jsp/common/header.jsp" />
 		<!-- Banner -->
 		<div id="middle">
@@ -19,7 +19,7 @@
 			<div class="type-contents">
 				<c:forEach var="list" items="${list}" varStatus="status">
 					<label class="button style2 scrolly typeBtn" name="typeBtn" for="${list.PARENT_CATEGORY}${status.index}">${list.CODE_NAME}</label>
-					<input type="radio" class="hidden" name="typeRadioBox" id="${list.PARENT_CATEGORY}${status.index}" value="${list.TYPE_CD}|${list.TYPE_CATEGORY}|${list.GROUP_ID}">
+					<input type="radio" class="hidden" name="typeRadioBox" id="${list.PARENT_CATEGORY}${status.index}" value="${list.TYPE_CD}_${list.TYPE_CATEGORY}_${list.GROUP_ID}">
 				</c:forEach>
 				<c:if test="${(fn:length(list)%2) eq 1}">
 					<label class="button scrolly " id="noneTypeBtn">null</label>

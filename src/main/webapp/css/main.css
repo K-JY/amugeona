@@ -2604,4 +2604,10 @@ br.clear {
 .disable{
 	overflow:hidden;
 }
+.loadingImg{
+    width: 40px;
+    top: 50%;
+    position: relative;
+	
+}
 

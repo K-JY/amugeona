@@ -5,6 +5,7 @@ init.ready = function(){
 			location.href="/main.do";
 		}else{
 			$("#frm").attr('action','/amu/foodSelect.do');
+			common.loading.start();
 			$("#frm").submit();
 		}
 		
@@ -25,6 +26,7 @@ var worldCup = {
 		
 		$(document).on('click','#mapListBtn',function(){
 			$("#frm").attr('action','/amu/mapList.do');
+			common.loading.start();
 			$("#frm").submit();
 		});
 	},

@@ -14,9 +14,9 @@ var amugeona = {
 
 			var data = $('input[name=typeRadioBox]:checked').val();
 			var paramData = {
-				typeCd:data.split('|')[0],
-				category:data.split('|')[1],
-				step:data.split('|')[2],
+				typeCd:data.split('_')[0],
+				category:data.split('_')[1],
+				step:data.split('_')[2],
 			}
 			
 			amugeona.typeList.push(paramData);
@@ -27,15 +27,16 @@ var amugeona = {
 				var stepData = '';
 				for(var i = 0;i<amugeona.typeList.length;i++){
 					if(amugeona.nullList.indexOf(amugeona.typeList[i].typeCd) == -1){
-						typeData += amugeona.typeList[i].typeCd+'|';
-						categoryData += amugeona.typeList[i].category+'|';
-						stepData += amugeona.typeList[i].step+'|';
+						typeData += amugeona.typeList[i].typeCd+'_';
+						categoryData += amugeona.typeList[i].category+'_';
+						stepData += amugeona.typeList[i].step+'_';
 					}
 					
 				}
 				$("#typeData").val(typeData);
 				$("#categoryData").val(categoryData);
 				$("#stepData").val(stepData);
+				common.loading.start();
 				$("#frm").submit();
 				
 				return;
@@ -51,9 +52,9 @@ var amugeona = {
 			}
 			var data = $('input[name=typeRadioBox]:checked').val();
 			var paramData = {
-				typeCd:data.split('|')[0],
-				category:data.split('|')[1],
-				step:data.split('|')[2],
+				typeCd:data.split('_')[0],
+				category:data.split('_')[1],
+				step:data.split('_')[2],
 			}
 			
 			amugeona.typeList.push(paramData);
@@ -64,15 +65,16 @@ var amugeona = {
 				var stepData = '';
 				for(var i = 0;i<amugeona.typeList.length;i++){
 					if(amugeona.nullList.indexOf(amugeona.typeList[i].typeCd) == -1){
-						typeData += amugeona.typeList[i].typeCd+'|';
-						categoryData += amugeona.typeList[i].category+'|';
-						stepData += amugeona.typeList[i].step+'|';
+						typeData += amugeona.typeList[i].typeCd+'_';
+						categoryData += amugeona.typeList[i].category+'_';
+						stepData += amugeona.typeList[i].step+'_';
 					}
 					
 				}
 				$("#typeData").val(typeData);
 				$("#categoryData").val(categoryData);
 				$("#stepData").val(stepData);
+				common.loading.start();
 				$("#frm").submit();
 				
 				return;
@@ -134,7 +136,7 @@ var html = {
 	typeList : function(idx, typeCategory, parentCategory, typeCd, codeName, step){
 		var html = '';
 		html += '<label class="button style2 scrolly typeBtn" name="typeBtn" for="'+parentCategory+idx+'">'+codeName+'</label>';
-		html += '<input type="radio" class="hidden" name="typeRadioBox" id="'+parentCategory+idx+'" value="'+typeCd+'|'+typeCategory+'|'+step+'">';
+		html += '<input type="radio" class="hidden" name="typeRadioBox" id="'+parentCategory+idx+'" value="'+typeCd+'_'+typeCategory+'_'+step+'">';
 		return html;
 	},
 	nullBtn : function(){
