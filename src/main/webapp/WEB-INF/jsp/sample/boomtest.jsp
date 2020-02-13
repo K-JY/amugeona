@@ -20,7 +20,9 @@
 		<jsp:include page="/WEB-INF/jsp/common/footer.jsp"/>
 		<div class="dim-layer" style="display: block;text-align:center;">
 		<div class="dimBg"></div>
-		<img src="/images/common/progress.gif" class="loadingImg"/>
+		<div class="loading-container"><div class="loading-img">
+		<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+		</div></div>
 		</div>
 	</body>
 </html>

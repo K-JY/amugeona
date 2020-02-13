@@ -288,7 +288,9 @@ var common = {
 				var html = '';
 				html += '<div class="dim-layer" id="loadingDim" style="display: block;text-align:center;">';
 				html += '<div class="dimBg"></div>';
-				html += '<img src="/images/common/progress.gif" class="loadingImg"/>';
+				html += '<div class="loading-container"><div class="loading-img">';
+				html += '<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>';
+				html += '</div>';
 				html += '</div>';
 				
 				$("#footer").after(html);
